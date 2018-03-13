@@ -1,11 +1,12 @@
 import React from 'react'
-import Card from './Card'
+import CardImage from './CardImage'
+import {connect} from 'react-redux'
 
 class Dealer extends React.Component {
 
   render() {
     const { dealer, dealerValue} = this.props
-    let cards = dealer.map(card => <Card key={card.code} card={card} /> )
+    let cards = dealer.map(card => <CardImage key={card.code} card={card} /> )
 
     return(
       <div className="dealerCards">
@@ -20,4 +21,10 @@ class Dealer extends React.Component {
   }
 }
 
-export default Dealer
+const mapStateToProps = (state) => {
+  return {
+    dealer: state.dealer, dealerValue: state.dealerValue
+  }
+}
+
+export default connect(mapStateToProps)(Dealer)
