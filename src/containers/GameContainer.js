@@ -1,5 +1,7 @@
 import React from 'react'
 import Table from '../components/Table'
+import {connect} from 'react-redux'
+import {startGame} from '../actions/game'
 
 class GameContainer extends React.Component {
   state = {
@@ -12,6 +14,16 @@ class GameContainer extends React.Component {
     remaining: "",
     dealt: false,
     stand: false,
+    finished: false,
+  }
+
+  componentDidMount () {
+    return function(dispatch) {
+      fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
+      .then(res => res.json())
+      .then(cards => dispatch(startGame(cards))
+      )
+    }
   }
 
   startGame = () => {
@@ -45,6 +57,13 @@ class GameContainer extends React.Component {
       player: [...this.state.player, json.cards[0]],
       playerValue: this.getValue([...this.state.player, json.cards[0]]),
       remaining: json.remaining
+    }, () => {
+      if (this.state.playerValue > 21) {
+        this.setState({
+          finished: true,
+          stand: true
+        })
+      }
     }))
   }
 
@@ -70,13 +89,14 @@ class GameContainer extends React.Component {
   }
 
   checkDealer = () => {
-    if (this.state.dealerValue < 16) {
+    if (this.state.dealerValue < 17 && this.state.playerValue <= 21) {
       fetch(`https://deckofcardsapi.com/api/deck/${this.state.deckId}/draw/?count=1`)
       .then(res=>res.json())
       .then(json => this.setState({
         dealer: [...this.state.dealer, json.cards[0]],
         remaining: json.remaining,
-        dealerValue: this.getValue([...this.state.dealer, json.cards[0]])
+        dealerValue: this.getValue([...this.state.dealer, json.cards[0]]),
+        finished: true
       }, () => {
         this.checkDealer()
       }))
@@ -90,10 +110,15 @@ class GameContainer extends React.Component {
               dealCards ={this.dealCards} dealt={this.state.dealt} startGame={this.startGame}
               dealer={this.state.dealer} dealerValue={this.state.dealerValue}
               player={this.state.player} playerValue={this.state.playerValue}  clickHit={this.clickHit}
-              clickStand={this.clickStand} stand={this.state.stand}/>
+              clickStand={this.clickStand} stand={this.state.stand} finished={this.state.finished}
+              />
       </div>
     )
   }
 }
 
-export default GameContainer
+const mapStateToProps = (state) => {
+  return {game: state.game}
+}
+
+export default connect(mapStateToProps)(GameContainer)

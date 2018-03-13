@@ -10,7 +10,7 @@ class Dealer extends React.Component {
     return(
       <div className="dealerCards">
         <div className="dealerCardsValue">
-          <h1>Dealer Value: {dealerValue} </h1>
+          <h2>Dealer Value: {dealerValue} </h2>
         </div>
         <div className="dealerCardsImages">
           {cards}
