@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from '../components/Table'
+import NavBar from '../components/NavBar'
 import {connect} from 'react-redux'
 import {startGame} from '../actions/game'
 
@@ -106,12 +107,15 @@ class GameContainer extends React.Component {
   render() {
     return (
       <div>
-        <Table deck={this.state.deck} remaining={this.state.remaining} started = {this.state.started}
+        <NavBar />
+        <div className="table" >
+          <Table deck={this.state.deck} remaining={this.state.remaining} started = {this.state.started}
               dealCards ={this.dealCards} dealt={this.state.dealt} startGame={this.startGame}
               dealer={this.state.dealer} dealerValue={this.state.dealerValue}
               player={this.state.player} playerValue={this.state.playerValue}  clickHit={this.clickHit}
               clickStand={this.clickStand} stand={this.state.stand} finished={this.state.finished}
               />
+        </div>
       </div>
     )
   }

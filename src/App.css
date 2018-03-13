@@ -26,12 +26,40 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+/* CUSTOM CSS  */
+html {
+  background-image: url("https://en1rnkpr0125001.blob.core.windows.net/media/Grosvenor/images/sidegames/Background/gc-game-background-1280x800-Blackjack-Realistic.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%
+}
+
+.navbar {
+  font-size: 60px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to bottom right, blue, white);
+}
+
+.startGame {
+  float: center;
+}
+
+.cardsLeft {
+  float:right;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  margin-left: -500px;
+  margin-right: 200px;
+}
 
 .dealerCards {
   justify-content: center;
 }
 
 .dealerCardsValue {
+  color: white;
 }
 
 .dealerCardsImages {
@@ -44,6 +72,7 @@
 }
 
 .playerCardsValue {
+  color: white;
 }
 
 .playerCardsImages {
@@ -65,4 +94,8 @@ button {
   font-weight: bold;
   transition: all 0.5s ease-in-out;
   margin-right: 5px;
+}
+
+.playerOptions {
+  color: white;
 }

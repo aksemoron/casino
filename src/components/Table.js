@@ -20,16 +20,23 @@ class Table extends React.Component {
 
     return (
       <div>
-        <h1>Deck Count: {remaining}</h1><br/>
-        <button onClick={startGame}>Start New Game</button>
-        <br/><br/>
+        <div className="startGame">
+          <button onClick={startGame}>Start New Game</button>
+        <div className="cardsLeft">
+          Cards Left: {remaining}
+        </div>
+      </div>
+
         {started ? <button onClick={dealCards}>Deal Cards</button> : null}
         {dealt ?
           <div>
             <Dealer dealer={dealer} dealerValue={dealerValue}/>
             <Player player={player} playerValue={playerValue}/>
-            {stand ? null : <PlayerOptions clickHit={clickHit} clickStand={clickStand} /> }
-            {finished ? this.checkWinner(dealerValue, playerValue) : null}
+            <div className="playerOptions">
+              {stand ? null : <PlayerOptions clickHit={clickHit} clickStand={clickStand} /> }
+              {finished ? this.checkWinner(dealerValue, playerValue) : null}
+            </div>
+
           </div>
         : null
         }
