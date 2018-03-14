@@ -33,11 +33,86 @@ html {
   background-size: 100%;
 }
 
+/*  LOGIN */
+
+.loginBox {
+  margin-top: 25%;
+  margin-left: 40%;
+}
+
+.loginBackground {
+  position: absolute;
+  background: white;
+  height: 500px;
+  width: 500px;
+  opacity: .2;
+  margin: -100px;
+  margin-left: -70px;
+  margin-top: -250px;
+  pointer-events: none;
+}
+
+.loginImage {
+  margin-left: 120px;
+  margin-top: 40px;
+}
+
+input {
+  height: 50px;
+  width: 350px;
+  font-size: 30px;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+.createUserButton {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+/*  NAV */
+
 .navbar {
   font-size: 60px;
   font-weight: bold;
   color: white;
-  background: linear-gradient(to bottom right, blue, white);
+  background: #001F3B;
+  opacity: .9;
+  padding-left: -500px;
+}
+
+/*  ALL FEATURES CONTAINER */
+.allFeatures {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* LeaderBoard */
+.leaderboard {
+  background: white;
+  width: 300px;
+  margin-left: 100px;
+
+}
+
+/*  Bankroll */
+.bankroll {
+  color: white;
+  font-size: 50px;
+  width: 300px;
+  margin-right: 100px;
+}
+/*  TABLE */
+.table {
 }
 
 .startGame {
@@ -45,12 +120,9 @@ html {
 }
 
 .cardsLeft {
-  float:right;
   font-size: 40px;
   font-weight: bold;
   color: white;
-  margin-left: -500px;
-  margin-right: 200px;
 }
 
 .dealerCards {

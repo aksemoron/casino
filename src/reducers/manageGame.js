@@ -1,5 +1,15 @@
 let defaultState =
   {
+    loggedIn: false,
+    username: "",
+    userId: "",
+    bankroll: "",
+    currentBet: 0,
+
+
+
+
+
     dealer: [],
     dealerValue: "",
     player: [],
@@ -28,6 +38,40 @@ let defaultState =
 
 export default function managePlayer(state = defaultState, action) {
   switch (action.type) {
+    // Login
+    case 'HANDLE_LOGIN':
+      if (action.payload.token) {
+        localStorage.setItem("token", action.payload.token)
+        return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+      } else {
+        localStorage.removeItem("token")
+        return {...state}
+      }
+    case 'CREATE_USER':
+      localStorage.setItem("token", action.payload.token)
+      return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+    case 'FIND_USER':
+      return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
+    // INCREMENT BET
+    case 'INCREASE_BET':
+      if (state.bankroll > 0) {
+        return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
+      } else {
+        return {...state}
+      }
+    case 'DECREASE_BET':
+      if (state.currentBet > 0) {
+        return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
+      } else {
+        return {...state}
+      }
+
+    // UPDATE BANKROLL
+    case 'INCREASE_BANK':
+        return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
+    case 'DECREASE_BANK':
+        return {...state, currentBet: 0}
+    // GAME
     case 'START_GAME':
       return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false, giveDealerCards: true}
     case 'DEAL_CARDS':
@@ -40,7 +84,7 @@ export default function managePlayer(state = defaultState, action) {
           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true
         }
       }
-
+    // GAME ACTIONS
     case 'CLICK_HIT':
       let newPlayerValue = getValue([...state.player, action.payload.cards[0]])
       if (newPlayerValue >= 21) {
@@ -71,7 +115,6 @@ export default function managePlayer(state = defaultState, action) {
         return {...state, dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
                   remaining: action.payload.remaining, giveDealerCards: false, finished: true}
       }
-
     default:
       return state;
   }

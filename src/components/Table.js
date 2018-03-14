@@ -3,7 +3,7 @@ import Dealer from '../components/Dealer'
 import Player from '../components/Player'
 import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
-import {startGame, dealCards, dealToDealer } from '../actions/game'
+import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank } from '../actions/game'
 
 class Table extends React.Component {
 
@@ -16,10 +16,11 @@ class Table extends React.Component {
 
   checkWinner = (dealer, player) => {
     let playAgainButton = <button onClick={() => this.props.dealCards(this.props.deckId)}>Deal Again</button>
-
     if ((dealer > player || player > 21) && (dealer <= 21)) {
+      this.props.decreaseBank()
       return <h1>Dealer Wins {playAgainButton}</h1>
     } else if (dealer > 21 || dealer < player) {
+      this.props.increaseBank()
       return <h1>Player Wins {playAgainButton}</h1>
     } else
       return <h1>Draw {playAgainButton}</h1>
@@ -35,7 +36,9 @@ class Table extends React.Component {
           Cards Left: {remaining}
         </div>
       </div>
-        {started && !dealt ? <button onClick={() => dealCards(deckId)}>Deal Cards</button> : null}
+        <div className="dealButton">
+          {started && !dealt ? <button onClick={() => dealCards(deckId)}>Deal Cards</button> : null}
+        </div>
         {dealt ?
           <div>
             <Dealer />
@@ -56,16 +59,8 @@ const mapStateToProps = (state) => {
   return {
     started: state.started, remaining: state.remaining, dealt: state.dealt, deckId: state.deckId,
     finished: state.finished, stand: state.stand, dealerValue: state.dealerValue,
-    playerValue: state.playerValue, giveDealerCards: state.giveDealerCards
+    playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    startGame: () => {dispatch(startGame())},
-    dealCards: (deckId) => {dispatch(dealCards(deckId))},
-    dealToDealer: (deckId) => {dispatch(dealToDealer(deckId))}
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank })(Table)

@@ -45,3 +45,66 @@ export const dealToDealer = (deckId) => {
     }))
   }
 }
+
+export const handleLogin = (username, password) => {
+  return function(dispatch) {
+    return fetch('http://localhost:3000/login', {
+      method: "POST",
+      headers: {"Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    }).then(res => res.json())
+    .then(json => dispatch({
+      type: 'HANDLE_LOGIN',
+      payload: json
+    }))
+  }
+}
+
+export const createUser = (username, password) => {
+  return function(dispatch) {
+    return fetch('http://localhost:3000/users', {
+      method: "POST",
+      headers: {"Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    }).then(res => res.json())
+    .then(json => dispatch({
+      type: 'CREATE_USER',
+      payload: json
+    }))
+  }
+}
+
+export const findUser = (token) => {
+  return function(dispatch) {
+    return fetch('http://localhost:3000/current_user', {
+      method: "POST",
+      headers: {"Authorization": token },
+    }).then(res => res.json())
+    .then(json => dispatch({
+      type: 'FIND_USER',
+      payload: json
+    }))
+  }
+}
+
+export const increaseBet = () => {
+  return {type: 'INCREASE_BET'}
+}
+
+export const decreaseBet = () => {
+  return {type: 'DECREASE_BET'}
+}
+
+export const increaseBank = () => {
+  return {type: 'INCREASE_BANK'}
+}
+
+export const decreaseBank = () => {
+  return {type: 'DECREASE_BANK'}
+}

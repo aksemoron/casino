@@ -7,11 +7,15 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import manageGame from './reducers/manageGame'
 
+import { BrowserRouter as Router} from 'react-router-dom'
+
 const store = createStore(manageGame, applyMiddleware(thunk))
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>
   , document.getElementById('root')
 );

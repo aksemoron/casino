@@ -21,11 +21,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    clickHit: (deckId) => {dispatch(clickHit(deckId))},
-    clickStand: () => {dispatch(clickStand())}
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerOptions)
+export default connect(mapStateToProps, {clickHit, clickStand})(PlayerOptions)
