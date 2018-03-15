@@ -27,10 +27,30 @@
   to { transform: rotate(360deg); }
 }
 /* CUSTOM CSS  */
+
+/* GLOBAL */
 html {
-  background-image: url("https://en1rnkpr0125001.blob.core.windows.net/media/Grosvenor/images/sidegames/Background/gc-game-background-1280x800-Blackjack-Realistic.png");
+  background-image: url("./icons/background.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+button {
+  padding: 5px 15px;
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+  margin-right: 5px;
+}
+
+button:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 }
 
 /*  LOGIN */
@@ -45,7 +65,7 @@ html {
   background: white;
   height: 500px;
   width: 500px;
-  opacity: .2;
+  opacity: .15;
   margin: -100px;
   margin-left: -70px;
   margin-top: -250px;
@@ -88,7 +108,35 @@ input {
   background: #001F3B;
   opacity: .9;
   padding-left: -500px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
 }
+
+.gameTitle {
+  margin-left: 25%;
+}
+
+.logoutButton {
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.logoutButton:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
 
 /*  ALL FEATURES CONTAINER */
 .allFeatures {
@@ -98,10 +146,8 @@ input {
 
 /* LeaderBoard */
 .leaderboard {
-  background: white;
   width: 300px;
   margin-left: 100px;
-
 }
 
 /*  Bankroll */
@@ -114,18 +160,66 @@ input {
 }
 
 .bankrollBox {
+  margin-top: 500px;
 }
 
 .betButtons {
-  margin-top: 15px;
+  margin-top:10px;
+}
+
+.increaseButton {
+  background: #7eff14;
+  background-image: linear-gradient(to bottom, #7eff14, #5ab82b);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 15px 30px 15px 30px;
+  text-decoration: none;
+}
+
+.increaseButton:hover {
+  background: #8af261;
+  background-image: linear-gradient(to bottom, #8af261, #0ef030);
+  text-decoration: none;
+}
+
+.increaseButton:focus {
+  outline:0;
+}
+
+.decreaseButton {
+  background: #e63c3c;
+  background-image: linear-gradient(to bottom, #e63c3c, #c90c0c);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 15px 37px 15px 37px;
+  text-decoration: none;
+}
+
+.decreaseButton:hover {
+  background: #de5252;
+  background-image: linear-gradient(to bottom, #de5252, #f01d1d);
+  text-decoration: none;
+}
+
+.decreaseButton:focus {
+  outline:0;
 }
 
 .moneyImage {
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 }
 
 .betImage {
   margin-bottom: -10px;
+}
+
+.piggy:hover {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
 /*  TABLE */
@@ -141,10 +235,16 @@ input {
   font-weight: bold;
   color: white;
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }
 
-.cardsLeft .tooltiptext {
+.remainingCards {
+  margin-top: 5px;
+}
+
+.remainingCards .tooltiptext {
   visibility: hidden;
   width: 100px;
   font-weight: bold;
@@ -161,11 +261,46 @@ input {
   margin-left: -80px;
 }
 
-.cardsLeft:hover .tooltiptext {
+.remainingCards:hover .tooltiptext {
     visibility: visible;
 }
 
+.refresh .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -20px;
+}
+
+.refresh:hover .tooltiptext {
+    visibility: visible;
+}
+
+.refreshButton {
+  transform-origin:50% 50%;
+  animation:30s App-logo-spin infinite linear;
+  background: none;
+  border: none;
+}
+
+.refreshButton:hover {
+  background: none;
+  border: none;
+}
+
+.refreshButton:focus {
+  outline:0;
+}
 
 .dealerCards {
   justify-content: center;
@@ -197,17 +332,7 @@ input {
   margin-top: 10px;
 }
 
-button {
-  padding: 5px 15px;
-  background: linear-gradient(to bottom right, #FBFB41, #E2D097);
-  border: 1px solid black;
-  cursor: pointer;
-  font-size: 30px;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: all 0.5s ease-in-out;
-  margin-right: 5px;
-}
+
 
 /*  PLAYER OPTIONS */
 .playerOptions {

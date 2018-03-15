@@ -4,42 +4,45 @@ import { increaseBet, decreaseBet, addMoney } from '../actions/game'
 
 class Bankroll extends React.Component {
   render() {
-    const {changeBet, username, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
-    return(
+    const {started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
+    return started ? (
       <div className="bankrollBox">
         <div>
-          {username.toUpperCase()}
+          <img className="bankImage" src={require("../icons/ancient.svg")} width="150px" alt=""/>
         </div>
         <div>
-          <img className="moneyImage" src="http://www.clker.com/cliparts/h/D/A/4/R/d/money-bag-md.png" width="50px" height="70px" alt=""/> ${bankroll}
+          <img className="moneyImage" src={require("../icons/money-bag.svg")} width="60px"  alt=""/> ${bankroll}
         </div>
         <div>
-          <img className="betImage" src="http://www.pushbuttonprofits.com/images/money_button_lg.png" width="55px" alt=""/> ${currentBet}
+          <img className="betImage" src={require("../icons/coins.svg")} width="55px" alt=""/> ${currentBet}
         </div>
         {changeBet ?
         <div>
             {bankroll !== 0 || currentBet !== 0 ?
-              <div>
-                <img className="betButtons" onClick={() => decreaseBet()} src="https://cdn.pixabay.com/photo/2013/07/12/17/00/remove-151678_1280.png" height="80px" alt=""/>&nbsp;
-                <img className="betButtons" onClick={() => increaseBet()} src="https://cdn.pixabay.com/photo/2014/03/25/17/00/plus-297823_1280.png" height="80px" alt=""/>
+              <div className="betButtons">
+                <button className="decreaseButton" onClick={() => decreaseBet()} >-</button>
+                <button className="increaseButton" onClick={() => increaseBet()} >+</button>
               </div>
             : null}
-          {((bankroll === 0 && currentBet === 0) && (dealt && finished)) ? <img onClick={() => addMoney()} src="http://www.vancitymommyd.com/wp-content/uploads/2018/01/piggy-bank-clipart-piggy-bank-clipart-images-clipartfest-car-clipartbarn-animations.png" width="100px" alt=""/> : null }
+          {((bankroll === 0 && currentBet === 0) && (dealt && finished)) ?
+            <img className="piggy" onClick={() => addMoney()} src={require("../icons/piggybank.svg")} width="120px" alt=""/>
+            : null }
         </div>
         : null}
       </div>
     )
+    : null
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
     bankroll: state.bankroll,
     currentBet: state.currentBet,
     finished: state.finished,
     changeBet: state.changeBet,
-    dealt: state.dealt
+    dealt: state.dealt,
+    started: state.started
   }
 }
 

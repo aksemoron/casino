@@ -31,6 +31,17 @@ export const clickHit = (deckId) => {
   }
 }
 
+export const clickDouble = (deckId) => {
+  return function(dispatch) {
+    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+    .then(res=>res.json())
+    .then(json => dispatch({
+      type: 'CLICK_DOUBLE',
+      payload: json
+    }))
+  }
+}
+
 export const clickStand = () => {
   return {type: 'CLICK_STAND'}
 }
@@ -91,6 +102,10 @@ export const findUser = (token) => {
       payload: json
     }))
   }
+}
+
+export const handleLogout = () => {
+  return {type: 'HANDLE_LOGOUT'}
 }
 
 export const increaseBet = () => {

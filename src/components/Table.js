@@ -7,6 +7,16 @@ import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank } from '.
 
 class Table extends React.Component {
 
+  updateUserBankroll (bankroll) {
+    return fetch(`http://localhost:3000/users/${this.props.userId}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json" },
+      body: JSON.stringify({
+        bankroll: bankroll
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.giveDealerCards && this.props.stand) {
       this.props.dealToDealer(this.props.deckId)
@@ -14,33 +24,39 @@ class Table extends React.Component {
   }
 
   checkWinner = (dealer, player) => {
-    let playAgainButton = <img onClick={() => this.props.dealCards(this.props.deckId)} src="http://www.sosseafest.org/wp-content/uploads/2018/02/Extraordinay-Deck-Of-Cards-Clip-Art-53-In-History-Clipart-with-Deck-Of-Cards-Clip-Art.jpg" width="100px" alt=""/>
+    let playAgainButton = <button onClick={()=>this.props.dealCards(this.props.deckId)}>DEAL AGAIN?</button>
     if ((dealer > player || player > 21) && (dealer <= 21)) {
       this.props.decreaseBank()
+      this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Dealer Wins</h1></div>
     } else if (dealer > 21 || dealer < player) {
       this.props.increaseBank()
+      this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Player Wins</h1></div>
     } else
       return <div>{playAgainButton}<h1>Push</h1></div>
   }
 
   render() {
-    const {remaining, startGame, dealCards, deckId, started, dealt, stand, dealerValue, playerValue, finished} = this.props
+    const {remaining, startGame, dealCards, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards} = this.props
     return (
       <div>
         <div className="startGame">
           {!started ? <img onClick={() => startGame()} src="http://pinnalla.trafi.fi/game/img/button-start-game.png" width="200px" alt=""/> : null }
           {started ?
             <div className="cardsLeft">
-              {remaining}
-              <img src="http://clipart-library.com/images/6Tp5qjjnc.png" width= "40px" alt=""/>
-              <span className="tooltiptext">{remaining} cards left</span>
-              <img onClick={() => startGame()} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/blue-tiedyed-cloth-icons-arrows/004909-blue-tiedyed-cloth-icon-arrows-arrows1-shuffle.png" width="50px" alt=""/>
+              <div className="remainingCards">
+                <img src={require(`../icons/cards.svg`)} width="60px" alt=""/>
+                <span className="tooltiptext">{remaining} cards left</span>
+              </div>
+              <div className="refresh">
+                <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>
+                <span className="tooltiptext">Refresh</span>
+              </div>
             </div> : null }
       </div>
         <div className="dealButton">
-          {started && !dealt ? <img onClick={() => dealCards(deckId)} src="http://www.sosseafest.org/wp-content/uploads/2018/02/Extraordinay-Deck-Of-Cards-Clip-Art-53-In-History-Clipart-with-Deck-Of-Cards-Clip-Art.jpg" width="200px" alt=""/> : null}
+          {started && !dealt ? <button onClick={()=>dealCards(deckId)}>DEAL</button>: null}
         </div>
         {dealt ?
           <div>
@@ -48,7 +64,7 @@ class Table extends React.Component {
             <Player />
             <div className="playerOptions">
               {stand ? null : <PlayerOptions /> }
-              {finished ? this.checkWinner(dealerValue, playerValue) : null}
+              {finished && !giveDealerCards ? this.checkWinner(dealerValue, playerValue) : null}
             </div>
           </div>
         : null
@@ -62,7 +78,8 @@ const mapStateToProps = (state) => {
   return {
     started: state.started, remaining: state.remaining, dealt: state.dealt, deckId: state.deckId,
     finished: state.finished, stand: state.stand, dealerValue: state.dealerValue,
-    playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn
+    playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn,
+    userId: state.userId, bankroll: state.bankroll
   }
 }
 

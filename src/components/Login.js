@@ -1,13 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { handleLogin, createUser } from '../actions/game'
+import { handleLogin, createUser, findUser } from '../actions/game'
 import { Redirect } from 'react-router'
 
 class Login extends React.Component {
-
   state = {
     username: "",
     password: ""
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.props.findUser(localStorage.getItem("token"))
+      .then(()=>this.props.history.push("/"))
+    }
   }
 
   handleUsernameInput = (event) => {
@@ -46,7 +52,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {loggedIn: state.loggedIn}
 }
 
-export default connect(mapStateToProps, { handleLogin, createUser })(Login)
+export default connect(mapStateToProps, { handleLogin, createUser, findUser })(Login)

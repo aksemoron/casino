@@ -6,6 +6,7 @@ let defaultState =
     bankroll: "",
     currentBet: 0,
     changeBet: true,
+    double: false,
 
     dealer: [],
     dealerValue: "",
@@ -49,6 +50,10 @@ export default function managePlayer(state = defaultState, action) {
       return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
     case 'FIND_USER':
       return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
+    case 'HANDLE_LOGOUT':
+      localStorage.removeItem("token")
+      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
+
     // INCREMENT BET
     case 'INCREASE_BET':
       if (state.bankroll > 0) {
@@ -65,9 +70,17 @@ export default function managePlayer(state = defaultState, action) {
 
     // UPDATE BANKROLL
     case 'INCREASE_BANK':
+      if (state.double) {
+        return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet))}
+      } else {
         return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
+      }
     case 'DECREASE_BANK':
+      if (state.double) {
+        return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet)}
+      } else {
         return {...state, currentBet: 0}
+      }
     case 'ADD_MONEY':
         return {...state, bankroll: 1000, currentBet: 0}
 
@@ -83,7 +96,7 @@ export default function managePlayer(state = defaultState, action) {
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
-          changeBet: false
+          changeBet: false, double: false
         }
       }
     // GAME ACTIONS
@@ -100,6 +113,22 @@ export default function managePlayer(state = defaultState, action) {
           remaining: action.payload.remaining
         }
       }
+    case 'CLICK_DOUBLE':
+      let newPlayerValueDouble = getValue([...state.player, action.payload.cards[0]])
+        if (newPlayerValueDouble >= 21) {
+          return {...state,
+            player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
+            remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
+            double: true
+          }
+        } else {
+          return {...state,
+            player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
+            remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: true, changeBet: true,
+            double: true
+          }
+        }
+
     case 'CLICK_STAND':
       if (state.playerValue === 21) {
         return {...state, stand: true, giveDealerCards: false, finished: true}
