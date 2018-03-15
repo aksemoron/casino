@@ -108,3 +108,7 @@ export const increaseBank = () => {
 export const decreaseBank = () => {
   return {type: 'DECREASE_BANK'}
 }
+
+export const addMoney = () => {
+  return {type: 'ADD_MONEY'}
+}

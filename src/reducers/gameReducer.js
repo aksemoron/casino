@@ -5,10 +5,7 @@ let defaultState =
     userId: "",
     bankroll: "",
     currentBet: 0,
-
-
-
-
+    changeBet: true,
 
     dealer: [],
     dealerValue: "",
@@ -71,6 +68,10 @@ export default function managePlayer(state = defaultState, action) {
         return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
     case 'DECREASE_BANK':
         return {...state, currentBet: 0}
+    case 'ADD_MONEY':
+        return {...state, bankroll: 1000, currentBet: 0}
+
+
     // GAME
     case 'START_GAME':
       return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false, giveDealerCards: true}
@@ -81,7 +82,8 @@ export default function managePlayer(state = defaultState, action) {
         return {...state,
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
-          remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true
+          remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
+          changeBet: false
         }
       }
     // GAME ACTIONS
@@ -90,7 +92,7 @@ export default function managePlayer(state = defaultState, action) {
       if (newPlayerValue >= 21) {
         return {...state,
           player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
-          remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false
+          remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true
         }
       } else {
         return {...state,
@@ -102,7 +104,7 @@ export default function managePlayer(state = defaultState, action) {
       if (state.playerValue === 21) {
         return {...state, stand: true, giveDealerCards: false, finished: true}
       } else {
-        return {...state, stand: true}
+        return {...state, stand: true, changeBet: true}
       }
     case 'DEAL_TO_DEALER':
       let newDealerValue = getValue([...state.dealer, action.payload.cards[0]])
@@ -113,7 +115,8 @@ export default function managePlayer(state = defaultState, action) {
         }
       } else {
         return {...state, dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
-                  remaining: action.payload.remaining, giveDealerCards: false, finished: true}
+                  remaining: action.payload.remaining, giveDealerCards: false, finished: true
+               }
       }
     default:
       return state;

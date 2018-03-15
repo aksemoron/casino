@@ -108,9 +108,26 @@ input {
 .bankroll {
   color: white;
   font-size: 50px;
+  font-weight: bold;
   width: 300px;
   margin-right: 100px;
 }
+
+.bankrollBox {
+}
+
+.betButtons {
+  margin-top: 15px;
+}
+
+.moneyImage {
+  margin-bottom: -10px;
+}
+
+.betImage {
+  margin-bottom: -10px;
+}
+
 /*  TABLE */
 .table {
 }
@@ -123,7 +140,32 @@ input {
   font-size: 40px;
   font-weight: bold;
   color: white;
+  position: relative;
+  display: inline-block;
 }
+
+.cardsLeft .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.cardsLeft:hover .tooltiptext {
+    visibility: visible;
+}
+
+
 
 .dealerCards {
   justify-content: center;
@@ -157,7 +199,7 @@ input {
 
 button {
   padding: 5px 15px;
-  background: linear-gradient(to bottom right, grey, white);
+  background: linear-gradient(to bottom right, #FBFB41, #E2D097);
   border: 1px solid black;
   cursor: pointer;
   font-size: 30px;
@@ -167,6 +209,59 @@ button {
   margin-right: 5px;
 }
 
+/*  PLAYER OPTIONS */
 .playerOptions {
   color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.hitButton {
+  position: relative;
+  display: inline-block;
+}
+
+.hitButton .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.hitButton:hover .tooltiptext {
+    visibility: visible;
+}
+
+.standButton {
+  position: relative;
+  display: inline-block;
+}
+
+.standButton .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.standButton:hover .tooltiptext {
+    visibility: visible;
 }
