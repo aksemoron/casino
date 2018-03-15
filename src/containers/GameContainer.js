@@ -10,8 +10,10 @@ import { Redirect } from 'react-router'
 class GameContainer extends React.Component {
 
   componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.props.findUser(localStorage.getItem("token"))
+    const token = localStorage.getItem("token")
+    if (token) {
+      debugger
+      this.props.findUser(token)
       .then(()=>this.props.history.push("/"))
     }
   }

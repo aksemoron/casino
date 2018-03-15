@@ -41,15 +41,18 @@ export default function managePlayer(state = defaultState, action) {
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
-      } else {
-        localStorage.removeItem("token")
-        return {...state}
       }
     case 'CREATE_USER':
-      localStorage.setItem("token", action.payload.token)
-      return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+      if (action.payload.token) {
+        localStorage.setItem("token", action.payload.token)
+        return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
+      }
     case 'FIND_USER':
-      return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
+      if (action.payload.error) {
+        return {...state, loggedIn: false}
+      } else {
+        return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
+      }
     case 'HANDLE_LOGOUT':
       localStorage.removeItem("token")
       return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
