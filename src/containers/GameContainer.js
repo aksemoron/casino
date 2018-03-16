@@ -12,7 +12,6 @@ class GameContainer extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("token")
     if (token) {
-      debugger
       this.props.findUser(token)
       .then(()=>this.props.history.push("/"))
     }

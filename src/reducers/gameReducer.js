@@ -7,6 +7,7 @@ let defaultState =
     currentBet: 0,
     changeBet: true,
     double: false,
+    settlePlayerBank: true,
 
     dealer: [],
     dealerValue: "",
@@ -42,11 +43,13 @@ export default function managePlayer(state = defaultState, action) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
       }
+      break;
     case 'CREATE_USER':
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
       }
+      break;
     case 'FIND_USER':
       if (action.payload.error) {
         return {...state, loggedIn: false}
@@ -74,18 +77,18 @@ export default function managePlayer(state = defaultState, action) {
     // UPDATE BANKROLL
     case 'INCREASE_BANK':
       if (state.double) {
-        return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet))}
+        return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), settlePlayerBank: false}
       } else {
-        return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
+        return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), settlePlayerBank: false}
       }
     case 'DECREASE_BANK':
       if (state.double) {
-        return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet)}
+        return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), settlePlayerBank: false}
       } else {
-        return {...state, currentBet: 0}
+        return {...state, currentBet: 0, settlePlayerBank: false}
       }
     case 'ADD_MONEY':
-        return {...state, bankroll: 1000, currentBet: 0}
+        return {...state, bankroll: 1000, currentBet: 0, settlePlayerBank: false}
 
 
     // GAME
@@ -99,7 +102,7 @@ export default function managePlayer(state = defaultState, action) {
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
-          changeBet: false, double: false
+          changeBet: false, double: false, settlePlayerBank: true
         }
       }
     // GAME ACTIONS

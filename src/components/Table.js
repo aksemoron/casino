@@ -25,14 +25,17 @@ class Table extends React.Component {
 
   checkWinner = (dealer, player) => {
     let playAgainButton = <button onClick={()=>this.props.dealCards(this.props.deckId)}>DEAL AGAIN?</button>
+
     if ((dealer > player || player > 21) && (dealer <= 21)) {
-      this.props.decreaseBank()
+      {this.props.settlePlayerBank ? this.props.decreaseBank() : null}
       this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Dealer Wins</h1></div>
+
     } else if (dealer > 21 || dealer < player) {
-      this.props.increaseBank()
+      {this.props.settlePlayerBank ? this.props.increaseBank() : null}
       this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Player Wins</h1></div>
+      
     } else
       return <div>{playAgainButton}<h1>Push</h1></div>
   }
@@ -79,7 +82,7 @@ const mapStateToProps = (state) => {
     started: state.started, remaining: state.remaining, dealt: state.dealt, deckId: state.deckId,
     finished: state.finished, stand: state.stand, dealerValue: state.dealerValue,
     playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn,
-    userId: state.userId, bankroll: state.bankroll
+    userId: state.userId, bankroll: state.bankroll, settlePlayerBank: state.settlePlayerBank
   }
 }
 
