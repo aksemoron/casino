@@ -8,7 +8,7 @@ class CardCount extends React.Component {
     let trueCount = Math.ceil(cardCount / Math.round(remaining/52))
     return cardCounterOn ? (
       <div className="cardCounter">
-        <div style={{color:"blue"}}>
+        <div style={{color:"red"}}>
           Decks Left: {Math.round(remaining/52)}
         </div>
         <div>
@@ -24,7 +24,7 @@ class CardCount extends React.Component {
           {!isNaN(trueCount) ? trueCount :null}
         </div>
         <div>
-          <button onClick={()=>toggleCardCounter()}>Off</button>
+          <button className="cardCountButton" onClick={()=>toggleCardCounter()}>Off</button>
         </div>
       </div>
     )

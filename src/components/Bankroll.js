@@ -7,6 +7,7 @@ class Bankroll extends React.Component {
     const {started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
     return started ? (
       <div className="bankrollBox">
+        <div className="bankTitle">BANK</div>
         <div>
           <img className="bankImage" src={require("../icons/ancient.svg")} width="150px" alt=""/>
         </div>
