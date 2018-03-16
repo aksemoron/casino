@@ -1,25 +1,33 @@
 let defaultState =
   {
+    // user details
     loggedIn: false,
     username: "",
     userId: "",
     bankroll: "",
+    // alter bet
     currentBet: 0,
     changeBet: true,
     double: false,
     settlePlayerBank: true,
-
+    // deal cards
     dealer: [],
     dealerValue: "",
     player: [],
     playerValue: "",
+    // start game
     started: false,
     deckId: "",
     remaining: "",
     dealt: false,
+    // handle dealer cards
     stand: false,
     finished: false,
-    giveDealerCards: true
+    giveDealerCards: true,
+    // counting cards
+    cardCount: 0,
+    cardCounterOn: true,
+
   }
 
   const cardValues = { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
@@ -32,6 +40,19 @@ let defaultState =
     if (mappedCards.includes("ACE") && count > 21) {
       count -= (10 * mappedCards.filter(card => {return card === "ACE"}).length)
     }
+    return count
+  }
+
+  const handleCardCount = (cards) => {
+    let count = 0
+    let mappedCards = cards.map(card => cardValues[card.value])
+    mappedCards.forEach(value => {
+      if (value <= 6) {
+        count += 1
+      } else if (value >= 10) {
+        count -= 1
+      }
+    })
     return count
   }
 
@@ -59,41 +80,10 @@ export default function managePlayer(state = defaultState, action) {
     case 'HANDLE_LOGOUT':
       localStorage.removeItem("token")
       return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
-
-    // INCREMENT BET
-    case 'INCREASE_BET':
-      if (state.bankroll > 0) {
-        return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
-      } else {
-        return {...state}
-      }
-    case 'DECREASE_BET':
-      if (state.currentBet > 0) {
-        return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
-      } else {
-        return {...state}
-      }
-
-    // UPDATE BANKROLL
-    case 'INCREASE_BANK':
-      if (state.double) {
-        return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), settlePlayerBank: false}
-      } else {
-        return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), settlePlayerBank: false}
-      }
-    case 'DECREASE_BANK':
-      if (state.double) {
-        return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), settlePlayerBank: false}
-      } else {
-        return {...state, currentBet: 0, settlePlayerBank: false}
-      }
-    case 'ADD_MONEY':
-        return {...state, bankroll: 1000, currentBet: 0, settlePlayerBank: false}
-
-
     // GAME
     case 'START_GAME':
-      return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false, giveDealerCards: true}
+      return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false,
+        giveDealerCards: true, cardCount: 0}
     case 'DEAL_CARDS':
       if (state.remaining < 6) {
         return {...state, started: false, dealt: false}
@@ -102,14 +92,14 @@ export default function managePlayer(state = defaultState, action) {
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: true, finished: true, giveDealerCards: false,
-          changeBet: true, double: true, settlePlayerBank: true
+          changeBet: true, double: true, settlePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
          }
       } else {
         return {...state,
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
-          changeBet: false, double: false, settlePlayerBank: true
+          changeBet: false, double: false, settlePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
         }
       }
     // GAME ACTIONS
@@ -118,12 +108,13 @@ export default function managePlayer(state = defaultState, action) {
       if (newPlayerValue >= 21) {
         return {...state,
           player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
-          remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true
+          remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
+          cardCount: state.cardCount + handleCardCount(action.payload.cards)
         }
       } else {
         return {...state,
           player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
-          remaining: action.payload.remaining
+          remaining: action.payload.remaining, cardCount: state.cardCount + handleCardCount(action.payload.cards)
         }
       }
     case 'CLICK_DOUBLE':
@@ -132,13 +123,13 @@ export default function managePlayer(state = defaultState, action) {
           return {...state,
             player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
             remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
-            double: true
+            double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
           }
         } else {
           return {...state,
             player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
             remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: true, changeBet: true,
-            double: true
+            double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
           }
         }
 
@@ -153,13 +144,48 @@ export default function managePlayer(state = defaultState, action) {
       if(newDealerValue < 17 && state.playerValue <= 21) {
         return {...state,
           dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
-          remaining: action.payload.remaining, giveDealerCards: true
+          remaining: action.payload.remaining, giveDealerCards: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
         }
       } else {
         return {...state, dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
-                  remaining: action.payload.remaining, giveDealerCards: false, finished: true
+                  remaining: action.payload.remaining, giveDealerCards: false, finished: true,
+                  cardCount: state.cardCount + handleCardCount(action.payload.cards)
                }
       }
+
+      // INCREMENT BET
+      case 'INCREASE_BET':
+        if (state.bankroll > 0) {
+          return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
+        } else {
+          return {...state}
+        }
+      case 'DECREASE_BET':
+        if (state.currentBet > 0) {
+          return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
+        } else {
+          return {...state}
+        }
+
+      // UPDATE BANKROLL
+      case 'INCREASE_BANK':
+        if (state.double) {
+          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), settlePlayerBank: false}
+        } else {
+          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), settlePlayerBank: false}
+        }
+      case 'DECREASE_BANK':
+        if (state.double) {
+          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), settlePlayerBank: false}
+        } else {
+          return {...state, currentBet: 0, settlePlayerBank: false}
+        }
+      case 'ADD_MONEY':
+          return {...state, bankroll: 1000, currentBet: 0, settlePlayerBank: false}
+
+      // CARD COUNTER
+      case 'TOGGLE_CARD_COUNTER':
+        return {...state, cardCounterOn: !state.cardCounterOn}
     default:
       return state;
   }

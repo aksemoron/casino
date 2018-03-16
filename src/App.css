@@ -150,8 +150,11 @@ input {
   margin-left: 100px;
 }
 
-/*  Bankroll */
-.bankroll {
+/*  Right Side */
+.rightSide {
+}
+
+.rightContainer {
   color: white;
   font-size: 50px;
   font-weight: bold;
@@ -159,8 +162,25 @@ input {
   margin-right: 100px;
 }
 
+/*  Card Count */
+.cardCounter {
+  font-size: 40px;
+  margin-top: 20px;
+  background-image: linear-gradient(to bottom, #3498db, #001F3B );
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+}
+
+/*  Bankroll */
+
 .bankrollBox {
-  margin-top: 500px;
+  margin-top: 120px;
+  position: relative;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #3498db, #001F3B );
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .betButtons {
@@ -332,7 +352,11 @@ input {
   margin-top: 10px;
 }
 
+/* CARDS */
 
+.cardImage {
+  border-radius: 12px;
+}
 
 /*  PLAYER OPTIONS */
 .playerOptions {

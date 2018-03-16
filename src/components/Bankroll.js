@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
     finished: state.finished,
     changeBet: state.changeBet,
     dealt: state.dealt,
-    started: state.started
+    started: state.started,
   }
 }
 

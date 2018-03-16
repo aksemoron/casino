@@ -12,10 +12,10 @@ import { BrowserRouter as Router} from 'react-router-dom'
 const store = createStore(gameReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
-  <Router>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router>
       <App />
-    </Provider>
-  </Router>
+    </Router>
+  </Provider>
   , document.getElementById('root')
 );

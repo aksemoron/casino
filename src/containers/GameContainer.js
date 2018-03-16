@@ -2,7 +2,7 @@ import React from 'react'
 import Table from '../components/Table'
 import NavBar from '../components/NavBar'
 import LeaderBoard from '../components/LeaderBoard'
-import Bankroll from '../components/Bankroll'
+import RightContainer from './RightContainer'
 import {connect} from 'react-redux'
 import { findUser } from '../actions/game'
 import { Redirect } from 'react-router'
@@ -29,8 +29,8 @@ class GameContainer extends React.Component {
             <div className="table" >
               <Table />
             </div>
-            <div className="bankroll">
-              <Bankroll />
+            <div className="rightContainer">
+              <RightContainer />
             </div>
           </div>
         :

@@ -1,6 +1,6 @@
 export const startGame = () => {
   return function(dispatch) {
-    fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
+    fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=8`)
     .then(res => res.json())
     .then(cards => dispatch({
       type: 'START_GAME',
@@ -126,4 +126,8 @@ export const decreaseBank = () => {
 
 export const addMoney = () => {
   return {type: 'ADD_MONEY'}
+}
+
+export const toggleCardCounter = () => {
+  return {type: 'TOGGLE_CARD_COUNTER'}
 }

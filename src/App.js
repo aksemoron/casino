@@ -12,6 +12,7 @@ class App extends Component {
       <Switch>
         <Route exact path = "/" render={(routerProps) => <div className="App"><GameContainer {...routerProps}/></div>} />
         <Route exact path = "/login" render={(routerProps) => <div className="loginBox"><Login {...routerProps}/></div>} />
+        <Route render={(routerProps) => <div className="loginBox"><Login {...routerProps}/></div>} />
       </Switch>
     );
   }
