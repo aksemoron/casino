@@ -97,6 +97,13 @@ export default function managePlayer(state = defaultState, action) {
     case 'DEAL_CARDS':
       if (state.remaining < 6) {
         return {...state, started: false, dealt: false}
+      } else if (getValue(action.payload.cards.slice(1,3)) === 21 ){
+        return {...state,
+          dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
+          player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
+          remaining: action.payload.remaining, dealt: true, stand: true, finished: true, giveDealerCards: false,
+          changeBet: true, double: true, settlePlayerBank: true
+         }
       } else {
         return {...state,
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),

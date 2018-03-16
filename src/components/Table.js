@@ -27,17 +27,21 @@ class Table extends React.Component {
     let playAgainButton = <button onClick={()=>this.props.dealCards(this.props.deckId)}>DEAL AGAIN?</button>
 
     if ((dealer > player || player > 21) && (dealer <= 21)) {
-      {this.props.settlePlayerBank ? this.props.decreaseBank() : null}
-      this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Dealer Wins</h1></div>
-
     } else if (dealer > 21 || dealer < player) {
-      {this.props.settlePlayerBank ? this.props.increaseBank() : null}
-      this.updateUserBankroll(this.props.bankroll)
       return <div>{playAgainButton}<h1>Player Wins</h1></div>
-      
     } else
       return <div>{playAgainButton}<h1>Push</h1></div>
+  }
+
+  settlePlayerBankroll = (dealer, player) => {
+    if ((dealer > player || player > 21) && (dealer <= 21)) {
+      this.props.decreaseBank()
+      this.updateUserBankroll(this.props.bankroll)
+    } else if (dealer > 21 || dealer < player) {
+      this.props.increaseBank()
+      this.updateUserBankroll(this.props.bankroll)
+    }
   }
 
   render() {
@@ -68,6 +72,7 @@ class Table extends React.Component {
             <div className="playerOptions">
               {stand ? null : <PlayerOptions /> }
               {finished && !giveDealerCards ? this.checkWinner(dealerValue, playerValue) : null}
+              {finished && this.props.settlePlayerBank ? this.settlePlayerBankroll(dealerValue, playerValue) : null}
             </div>
           </div>
         : null
