@@ -23,11 +23,11 @@ class GameContainer extends React.Component {
         <NavBar />
         {this.props.loggedIn ?
           <div className="allFeatures">
-            <div className="leftContainer">
-              <LeftContainer />
-            </div>
             <div className="table" >
               <Table />
+            </div>
+            <div className="leftContainer">
+              <LeftContainer />
             </div>
             <div className="rightContainer">
               <RightContainer />

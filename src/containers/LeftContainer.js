@@ -1,13 +1,13 @@
 import React from 'react'
 import LeaderBoard from '../components/LeaderBoard'
-import PlayerHelp from '../components/PlayerHelp'
+import Bankroll from '../components/Bankroll'
 
 class RightContainer extends React.Component {
   render() {
     return (
       <div className="leftSide">
         <LeaderBoard />
-        <PlayerHelp />
+        <Bankroll />
       </div>
     )
   }

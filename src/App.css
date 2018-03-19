@@ -189,7 +189,7 @@ input {
   bottom: 0;
   position: absolute;
   width: 100%;
-  border-radius: 5px;
+  margin-bottom: -10px;
 }
 
 /*  Right Side */

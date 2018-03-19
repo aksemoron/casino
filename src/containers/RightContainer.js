@@ -1,13 +1,13 @@
 import React from 'react'
-import Bankroll from '../components/Bankroll'
 import Cardcount from '../components/Cardcount'
+import BasicStrategy from '../components/BasicStrategy'
 
 class RightContainer extends React.Component {
   render() {
     return (
       <div className="rightSide">
         <Cardcount />
-        <Bankroll />
+        <BasicStrategy />
       </div>
     )
   }
