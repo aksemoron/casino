@@ -24,7 +24,7 @@ class LeaderBoard extends React.Component {
           {leader.username}:
         </span>&nbsp;
         <span style={{color:"green"}}>
-          {leader.bankroll}
+          ${leader.bankroll}
         </span>
       </div>
     })

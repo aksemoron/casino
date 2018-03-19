@@ -173,6 +173,10 @@ input {
   font-size: 40px;
   padding-bottom: 15px;
   border-radius: 5px;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .leaderScore {
@@ -208,7 +212,6 @@ input {
   padding-bottom: 15px;
   border-radius: 5px;
 }
-
 
 .cardCountButton {
   margin-top: 10px;

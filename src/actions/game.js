@@ -11,7 +11,7 @@ export const startGame = () => {
 
 export const dealCards = (deckId) => {
   return function(dispatch) {
-    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`)
+    return fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`)
     .then(res=>res.json())
     .then(json => dispatch({
       type: 'DEAL_CARDS',
@@ -106,7 +106,7 @@ export const findUser = (token) => {
 
 export const topUsers = () => {
   return function(dispatch) {
-    return fetch('http://localhost:3000/users')
+    fetch('http://localhost:3000/users')
     .then(res => res.json())
     .then(json => dispatch({
       type: 'TOP_USERS',
@@ -114,7 +114,6 @@ export const topUsers = () => {
     }))
   }
 }
-
 
 
 export const handleLogout = () => {
@@ -139,6 +138,10 @@ export const decreaseBank = () => {
 
 export const addMoney = () => {
   return {type: 'ADD_MONEY'}
+}
+
+export const settlePlayerBank = () => {
+  return {type: 'SETTLE_PLAYER_BANK'}
 }
 
 export const toggleCardCounter = () => {

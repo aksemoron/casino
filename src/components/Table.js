@@ -3,7 +3,7 @@ import Dealer from '../components/Dealer'
 import Player from '../components/Player'
 import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
-import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank } from '../actions/game'
+import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank } from '../actions/game'
 
 class Table extends React.Component {
 
@@ -14,12 +14,14 @@ class Table extends React.Component {
       body: JSON.stringify({
         bankroll: bankroll
       })
-    })
+    }).then(this.props.topUsers())
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.giveDealerCards && this.props.stand) {
       this.props.dealToDealer(this.props.deckId)
+    } else if (!this.props.giveDealerCards && this.props.togglePlayerBank) {
+        this.settlePlayerBankroll(this.props.dealerValue, this.props.playerValue)
     }
   }
 
@@ -35,7 +37,7 @@ class Table extends React.Component {
   }
 
   settlePlayerBankroll = (dealer, player) => {
-    if ((dealer > player || player > 21) && (dealer <= 21)) {
+    if ((dealer <= 21) && (dealer > player || player > 21)) {
       this.props.decreaseBank()
       this.updateUserBankroll(this.props.bankroll)
     } else if (dealer > 21 || dealer < player) {
@@ -43,6 +45,7 @@ class Table extends React.Component {
       this.updateUserBankroll(this.props.bankroll)
     }
   }
+
 
   render() {
     const {remaining, startGame, dealCards, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards} = this.props
@@ -72,7 +75,6 @@ class Table extends React.Component {
             <div className="playerOptions">
               {stand ? null : <PlayerOptions /> }
               {finished && !giveDealerCards ? this.checkWinner(dealerValue, playerValue) : null}
-              {finished && this.props.settlePlayerBank ? this.settlePlayerBankroll(dealerValue, playerValue) : null}
             </div>
           </div>
         : null
@@ -87,8 +89,8 @@ const mapStateToProps = (state) => {
     started: state.started, remaining: state.remaining, dealt: state.dealt, deckId: state.deckId,
     finished: state.finished, stand: state.stand, dealerValue: state.dealerValue,
     playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn,
-    userId: state.userId, bankroll: state.bankroll, settlePlayerBank: state.settlePlayerBank
+    userId: state.userId, bankroll: state.bankroll, togglePlayerBank: state.togglePlayerBank
   }
 }
 
-export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank })(Table)
+export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank })(Table)

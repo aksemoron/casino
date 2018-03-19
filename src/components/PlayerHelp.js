@@ -7,7 +7,6 @@ class PlayerHelp extends React.Component {
         <div className="panelHeader">
           PlayerHelp
         </div>
-
       </div>
     )
   }

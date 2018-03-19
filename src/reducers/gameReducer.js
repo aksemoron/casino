@@ -10,7 +10,7 @@ let defaultState =
     currentBet: 0,
     changeBet: true,
     double: false,
-    settlePlayerBank: true,
+    togglePlayerBank: true,
     // deal cards
     dealer: [],
     dealerValue: "",
@@ -97,14 +97,14 @@ export default function managePlayer(state = defaultState, action) {
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: true, finished: true, giveDealerCards: false,
-          changeBet: true, double: true, settlePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
+          changeBet: true, double: true, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
          }
       } else {
         return {...state,
           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
-          changeBet: false, double: false, settlePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
+          changeBet: false, double: false, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
         }
       }
     // GAME ACTIONS
@@ -175,18 +175,20 @@ export default function managePlayer(state = defaultState, action) {
       // UPDATE BANKROLL
       case 'INCREASE_BANK':
         if (state.double) {
-          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), settlePlayerBank: false}
+          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), togglePlayerBank: false}
         } else {
-          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), settlePlayerBank: false}
+          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), togglePlayerBank: false}
         }
       case 'DECREASE_BANK':
         if (state.double) {
-          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), settlePlayerBank: false}
+          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), togglePlayerBank: false}
         } else {
-          return {...state, currentBet: 0, settlePlayerBank: false}
+          return {...state, currentBet: 0, togglePlayerBank: false}
         }
       case 'ADD_MONEY':
-          return {...state, bankroll: 1000, currentBet: 0, settlePlayerBank: false}
+        return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
+      case 'SETTLE_PLAYER_BANK':
+        return {...state, togglePlayerBank: true}
 
       // CARD COUNTER
       case 'TOGGLE_CARD_COUNTER':

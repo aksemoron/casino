@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class Player extends React.Component {
   render() {
     const { player, playerValue } = this.props
-    let cards = player.map(card => <CardImage key={card.code} card={card}  /> )
+    let cards = player.map((card, index) => <CardImage key={card.code + index} card={card}  /> )
 
     return(
       <div className="playerCards">
