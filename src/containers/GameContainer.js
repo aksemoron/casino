@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '../components/Table'
 import NavBar from '../components/NavBar'
-import LeaderBoard from '../components/LeaderBoard'
+import LeftContainer from './LeftContainer'
 import RightContainer from './RightContainer'
 import {connect} from 'react-redux'
 import { findUser } from '../actions/game'
@@ -23,8 +23,8 @@ class GameContainer extends React.Component {
         <NavBar />
         {this.props.loggedIn ?
           <div className="allFeatures">
-            <div className="leaderboard">
-              <LeaderBoard />
+            <div className="leftContainer">
+              <LeftContainer />
             </div>
             <div className="table" >
               <Table />

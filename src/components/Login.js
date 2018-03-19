@@ -28,21 +28,27 @@ class Login extends React.Component {
     })
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.handleLogin(this.state.username, this.state.password)
+  }
+
   render() {
-    return (!this.props.loggedIn ) ? (
+    return !this.props.loggedIn  ? (
       <div className="login" >
         <div className="loginBackground"><img className= "loginImage" src="https://gp1.wac.edgecastcdn.net/802892/http_public_production/artists/images/581497/original/resize:248x186/crop:x0y0w248h186/hash:1466606600/BlackJack_logo__2__1266795101_1266795243.jpg?1466606600" alt=""/></div>
         <div className="loginForm">
-          <div>
+          <form onSubmit={this.handleSubmit}>
             <div className="loginUsername">
               <input type="text" placeholder="Username" onChange={this.handleUsernameInput}/>
             </div>
             <div className="loginPassword">
               <input type="password" placeholder="Password" onChange={this.handlePasswordInput}/>
             </div>
-          </div>
-            <button className="submitButton" onClick={() => this.props.handleLogin(this.state.username, this.state.password)}>Submit</button>
+            <button className="submitButton">Submit</button>
             <button className="createUserButton" onClick={() => this.props.createUser(this.state.username, this.state.password)}>Create User</button>
+          </form>
+
         </div>
       </div>
     )

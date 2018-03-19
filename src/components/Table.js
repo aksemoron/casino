@@ -54,7 +54,7 @@ class Table extends React.Component {
             <div className="cardsLeft">
               <div className="remainingCards">
                 <img src={require(`../icons/cards.svg`)} width="60px" alt=""/>
-                <span className="tooltiptext">{remaining} cards left</span>
+                <span className="tooltiptext">Cards Left: {remaining}</span>
               </div>
               <div className="refresh">
                 <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>

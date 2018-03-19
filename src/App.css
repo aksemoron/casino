@@ -53,6 +53,16 @@ button:hover {
   text-decoration: none;
 }
 
+.panelHeader {
+  background: #001F3B;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  font-size: 40px;
+}
+
+
 /*  LOGIN */
 
 .loginBox {
@@ -144,40 +154,67 @@ input {
   justify-content: space-between;
 }
 
+/* Left Side  */
+
 /* LeaderBoard */
+.leftContainer {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  width: 350px;
+  background-image: url('./icons/sky.jpg');
+  height: 93%;
+  position: absolute;
+  left: 0;
+  opacity: .9;
+}
+
 .leaderboard {
-  width: 300px;
-  margin-left: 100px;
+  font-size: 40px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+}
+
+.leaderScore {
+  border-bottom: 1px solid black;
+}
+
+/*  Player Help */
+
+.playerHelp {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
 }
 
 /*  Right Side */
-.rightSide {
-}
 
 .rightContainer {
   color: white;
   font-size: 50px;
   font-weight: bold;
-  width: 300px;
+  width: 350px;
   background-image: url('./icons/sky.jpg');
   height: 93%;
   position: absolute;
   right: 0;
+  opacity: .9;
 }
 
 /*  Card Count */
 .cardCounter {
   font-size: 40px;
-  padding-top: 15px;
   padding-bottom: 15px;
   border-radius: 5px;
 }
 
 
-/*  Bankroll */
-.bankTitle {
-  border-top: 5px double black;
+.cardCountButton {
+  margin-top: 10px;
 }
+
+/*  Bankroll */
 
 .bankrollBox {
   bottom: 0;

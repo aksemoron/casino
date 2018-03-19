@@ -104,6 +104,19 @@ export const findUser = (token) => {
   }
 }
 
+export const topUsers = () => {
+  return function(dispatch) {
+    return fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(json => dispatch({
+      type: 'TOP_USERS',
+      payload: json
+    }))
+  }
+}
+
+
+
 export const handleLogout = () => {
   return {type: 'HANDLE_LOGOUT'}
 }

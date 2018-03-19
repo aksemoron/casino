@@ -5,6 +5,7 @@ let defaultState =
     username: "",
     userId: "",
     bankroll: "",
+    leaderBoard: [],
     // alter bet
     currentBet: 0,
     changeBet: true,
@@ -58,19 +59,21 @@ let defaultState =
 
 export default function managePlayer(state = defaultState, action) {
   switch (action.type) {
-    // Login
+    // Login / Users
     case 'HANDLE_LOGIN':
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+      } else {
+        return {...state}
       }
-      break;
     case 'CREATE_USER':
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
+      } else {
+        return {...state}
       }
-      break;
     case 'FIND_USER':
       if (action.payload.error) {
         return {...state, loggedIn: false}
@@ -80,6 +83,8 @@ export default function managePlayer(state = defaultState, action) {
     case 'HANDLE_LOGOUT':
       localStorage.removeItem("token")
       return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
+    case 'TOP_USERS':
+      return {...state, leaderBoard: action.payload }
     // GAME
     case 'START_GAME':
       return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false,
