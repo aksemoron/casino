@@ -7,7 +7,6 @@ let defaultState = {
   currentBet: 0,
 }
 
-
 export default function manageUser(state = defaultState, action) {
   switch (action.type) {
     // Login / Users
@@ -50,29 +49,28 @@ export default function manageUser(state = defaultState, action) {
           return {...state}
         }
       case 'BET_ALL_IN':
-        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: 0, dealt: true}
+        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: 0}
 
       // UPDATE BANKROLL
       case 'INCREASE_BANK':
         if (state.double) {
-          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), togglePlayerBank: false}
+          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet))}
         } else {
-          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), togglePlayerBank: false}
+          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
         }
       case 'DECREASE_BANK':
         if (state.double) {
-          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), togglePlayerBank: false}
+          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet)}
         } else {
-          return {...state, currentBet: 0, togglePlayerBank: false}
+          return {...state, currentBet: 0}
         }
       case 'ADD_MONEY':
         if (state.username === "kenny") {
-          return {...state, bankroll: 100000, currentBet: 0, togglePlayerBank: false}
+          return {...state, bankroll: 100000, currentBet: 0}
         } else {
-          return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
+          return {...state, bankroll: 1000, currentBet: 0}
         }
-      case 'SETTLE_PLAYER_BANK':
-        return {...state, togglePlayerBank: true}
+
       default:
         return state;
   }

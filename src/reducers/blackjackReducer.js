@@ -47,7 +47,6 @@ const handleCardCount = (cards) => {
   return count
 }
 
-
 export default function manageBlackjack(state = defaultState, action) {
   switch (action.type) {
     // GAME
@@ -125,7 +124,28 @@ export default function manageBlackjack(state = defaultState, action) {
       // CARD COUNTER
       case 'TOGGLE_CARD_COUNTER':
         return {...state, cardCounterOn: !state.cardCounterOn}
+      case 'SETTLE_PLAYER_BANK':
+        return {...state, togglePlayerBank: true}
       default:
         return state;
+        // UPDATE BANKROLL
+      case 'INCREASE_BANK':
+        if (state.double) {
+          return {...state, double: false, togglePlayerBank: false}
+        } else {
+          return {...state, togglePlayerBank: false}
+        }
+      case 'DECREASE_BANK':
+        if (state.double) {
+          return {...state, togglePlayerBank: false}
+        } else {
+          return {...state, togglePlayerBank: false}
+        }
+      case 'ADD_MONEY':
+        if (state.username === "kenny") {
+          return {...state, togglePlayerBank: false}
+        } else {
+          return {...state, togglePlayerBank: false}
+        }
   }
 }

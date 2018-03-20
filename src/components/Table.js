@@ -101,7 +101,7 @@ const mapStateToProps = (state) => {
   return {
     started: state.blackjack.started, remaining: state.blackjack.remaining, dealt: state.blackjack.dealt, deckId: state.blackjack.deckId,
     finished: state.blackjack.finished, stand: state.blackjack.stand, dealerValue: state.blackjack.dealerValue,
-    playerValue: state.blackjack.playerValue, giveDealerCards: state.blackjack.giveDealerCards, togglePlayerBank: state.togglePlayerBank,
+    playerValue: state.blackjack.playerValue, giveDealerCards: state.blackjack.giveDealerCards, togglePlayerBank: state.blackjack.togglePlayerBank,
     changeBet: state.blackjack.changeBet,
     loggedIn: state.user.loggedIn, userId: state.user.userId, currentBet: state.user.currentBet,
     bankroll: state.user.bankroll
