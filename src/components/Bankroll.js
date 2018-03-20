@@ -4,10 +4,10 @@ import { increaseBet, decreaseBet, addMoney } from '../actions/game'
 
 class Bankroll extends React.Component {
   render() {
-    const {started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
+    const {username, started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
     return started ? (
       <div className="bankrollBox">
-        <div className="panelHeader">BANK</div>
+        <div className="panelHeader">{username}'s BANK</div>
         <div>
           <img className="bankImage" src={require("../icons/ancient.svg")} width="150px" alt=""/>
         </div>
@@ -44,6 +44,7 @@ const mapStateToProps = (state) => {
     changeBet: state.changeBet,
     dealt: state.dealt,
     started: state.started,
+    username: state.username
   }
 }
 
