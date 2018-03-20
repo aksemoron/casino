@@ -3,7 +3,7 @@ import Dealer from '../components/Dealer'
 import Player from '../components/Player'
 import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
-import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank } from '../actions/game'
+import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, increaseBet, decreaseBet, addMoney, betAllIn  } from '../actions/game'
 
 class Table extends React.Component {
 
@@ -26,17 +26,14 @@ class Table extends React.Component {
   }
 
   checkWinner = (dealer, player) => {
-    let playAgainButton = <button onClick={()=>this.props.dealCards(this.props.deckId)}>DEAL AGAIN?</button>
+    this.updateUserBankroll(this.props.bankroll)
 
     if ((dealer > player || player > 21) && (dealer <= 21)) {
-      this.updateUserBankroll(this.props.bankroll)
-      return <div>{playAgainButton}<h1>Dealer Wins</h1></div>
+      return <div className="playAgain">Dealer Wins</div>
     } else if (dealer > 21 || dealer < player) {
-      this.updateUserBankroll(this.props.bankroll)
-      return <div>{playAgainButton}<h1>Player Wins</h1></div>
+      return <div className="playAgain">Player Wins</div>
     } else
-      this.updateUserBankroll(this.props.bankroll)
-      return <div>{playAgainButton}<h1>Push</h1></div>
+      return <div className="playAgain">Push</div>
   }
 
   settlePlayerBankroll = (dealer, player) => {
@@ -47,13 +44,18 @@ class Table extends React.Component {
     }
   }
 
+  userbetAllIn = () => {
+    this.props.betAllIn()
+    this.props.dealCards(this.props.deckId)
+  }
 
   render() {
-    const {remaining, startGame, dealCards, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards} = this.props
+    const {remaining, startGame, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards,
+           changeBet, bankroll, currentBet, increaseBet, decreaseBet, addMoney, dealCards} = this.props
     return (
       <div>
-        <div className="startGame">
-          {!started ? <img onClick={() => startGame()} src="http://pinnalla.trafi.fi/game/img/button-start-game.png" width="200px" alt=""/> : null }
+        <div>
+          {!started ? <button className="startGame"><img className="startGameButton" onClick={() => startGame()} src="http://pinnalla.trafi.fi/game/img/button-start-game.png" width="300px" alt=""/></button> : null }
           {started ?
             <div className="cardsLeft">
               <div className="remainingCards">
@@ -76,10 +78,18 @@ class Table extends React.Component {
             <div className="playerOptions">
               {stand ? null : <PlayerOptions /> }
               {finished && !giveDealerCards ? this.checkWinner(dealerValue, playerValue) : null}
+              {changeBet && started ?
+                <div>
+                  &nbsp;&nbsp;&nbsp;<button onClick={()=>dealCards(deckId)}>DEAL</button>&nbsp;
+                  &nbsp;{bankroll !== 0 ? <button onClick={()=>this.userbetAllIn()}>All In</button> : null}
+                </div>
+              : null}
             </div>
+
           </div>
         : null
         }
+
       </div>
     )
   }
@@ -90,8 +100,9 @@ const mapStateToProps = (state) => {
     started: state.started, remaining: state.remaining, dealt: state.dealt, deckId: state.deckId,
     finished: state.finished, stand: state.stand, dealerValue: state.dealerValue,
     playerValue: state.playerValue, giveDealerCards: state.giveDealerCards, loggedIn: state.loggedIn,
-    userId: state.userId, bankroll: state.bankroll, togglePlayerBank: state.togglePlayerBank
+    userId: state.userId, togglePlayerBank: state.togglePlayerBank, currentBet: state.currentBet,
+    bankroll: state.bankroll, changeBet: state.changeBet
   }
 }
 
-export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank })(Table)
+export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, increaseBet, decreaseBet, addMoney, betAllIn })(Table)

@@ -296,6 +296,13 @@ input {
   float: center;
 }
 
+.startGame {
+  margin-top: 300px;
+  padding-top: 20px;
+}
+
+/*  CARDS */
+
 .cardsLeft {
   font-size: 40px;
   font-weight: bold;
@@ -398,7 +405,12 @@ input {
   margin-top: 10px;
 }
 
-/* CARDS */
+.playAgain {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+/* CARD Images */
 
 .cardImage {
   border-radius: 12px;

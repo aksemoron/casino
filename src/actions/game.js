@@ -140,6 +140,10 @@ export const addMoney = () => {
   return {type: 'ADD_MONEY'}
 }
 
+export const betAllIn = () => {
+  return {type: 'BET_ALL_IN'}
+}
+
 export const settlePlayerBank = () => {
   return {type: 'SETTLE_PLAYER_BANK'}
 }

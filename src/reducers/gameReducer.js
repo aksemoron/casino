@@ -160,19 +160,19 @@ export default function managePlayer(state = defaultState, action) {
 
       // INCREMENT BET
       case 'INCREASE_BET':
-        console.log("hit")
         if (state.bankroll > 0) {
           return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
         } else {
           return {...state}
         }
       case 'DECREASE_BET':
-      console.log("hit")
         if (state.currentBet > 0) {
           return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
         } else {
           return {...state}
         }
+      case 'BET_ALL_IN':
+        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: 0, dealt: true}
 
       // UPDATE BANKROLL
       case 'INCREASE_BANK':
