@@ -42,7 +42,7 @@ class GameContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {loggedIn: state.loggedIn}
+  return {loggedIn: state.user.loggedIn}
 }
 
 export default connect(mapStateToProps, {findUser})(GameContainer)

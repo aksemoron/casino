@@ -4,7 +4,7 @@ import { increaseBet, decreaseBet, addMoney } from '../actions/game'
 
 class Bankroll extends React.Component {
   render() {
-    const {username, started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney, finished, dealt} = this.props
+    const {username, started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney} = this.props
     return started ? (
       <div className="bankrollBox">
         <div className="panelHeader">{username}'s BANK</div>
@@ -25,7 +25,7 @@ class Bankroll extends React.Component {
                 <button className="increaseButton" onClick={() => increaseBet()} >+</button>
               </div>
             : null}
-          {((bankroll === 0 && currentBet === 0) && (dealt && finished)) ?
+          {((bankroll === 0 && currentBet === 0) && (started)) ?
             <img className="piggy" onClick={() => addMoney()} src={require("../icons/piggybank.svg")} width="120px" alt=""/>
             : null }
         </div>
@@ -38,13 +38,11 @@ class Bankroll extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    bankroll: state.bankroll,
-    currentBet: state.currentBet,
-    finished: state.finished,
-    changeBet: state.changeBet,
-    dealt: state.dealt,
-    started: state.started,
-    username: state.username
+    username: state.user.username,
+    bankroll: state.user.bankroll,
+    currentBet: state.user.currentBet,
+    changeBet: state.blackjack.changeBet,
+    started: state.blackjack.started,
   }
 }
 

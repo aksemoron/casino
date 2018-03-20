@@ -5,7 +5,7 @@ const CardImage = (props) => {
   const { image, value } = props.card
   return props.cardCounterOn ? (
     <div style={{color: value <= 6 ? "green" : value < 10 ? "grey" : "red"}}>
-      <img className= "cardImage" src={image}  border="4px solid" width="200px"  alt="" />
+      <img className= "cardImage" src={image}  border="4px solid" width="190px"  alt="" />
     </div>
   )
   :
@@ -17,6 +17,6 @@ const CardImage = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {cardCounterOn: state.cardCounterOn}
+  return {cardCounterOn: state.blackjack.cardCounterOn}
 }
 export default connect(mapStateToProps)(CardImage)

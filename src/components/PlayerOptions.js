@@ -18,12 +18,12 @@ class PlayerOptions extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    deckId: state.deckId,
-    dealerValue: state.dealerValue,
-    playerValue: state.playerValue,
-    player: state.player,
-    currentBet: state.currentBet,
-    bankroll: state.bankroll,
+    deckId: state.blackjack.deckId,
+    dealerValue: state.blackjack.dealerValue,
+    playerValue: state.blackjack.playerValue,
+    player: state.blackjack.player,
+    currentBet: state.user.currentBet,
+    bankroll: state.user.bankroll,
   }
 }
 

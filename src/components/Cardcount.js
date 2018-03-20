@@ -44,9 +44,9 @@ class CardCount extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    cardCount: state.cardCount,
-    cardCounterOn: state.cardCounterOn,
-    remaining: state.remaining
+    cardCount: state.blackjack.cardCount,
+    cardCounterOn: state.blackjack.cardCounterOn,
+    remaining: state.blackjack.remaining
   }
 }
 

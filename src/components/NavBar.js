@@ -17,7 +17,7 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {username: state.username}
+  return {username: state.user.username}
 }
 
 export default connect(mapStateToProps, {handleLogout})(NavBar)

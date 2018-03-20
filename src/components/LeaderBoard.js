@@ -41,7 +41,7 @@ class LeaderBoard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    leaderBoard: state.leaderBoard
+    leaderBoard: state.user.leaderBoard
   }
 }
 

@@ -51,6 +51,7 @@ button:hover {
   background: #3cb0fd;
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
+  color: white;
 }
 
 .panelHeader {
@@ -125,12 +126,13 @@ input {
 
 .gameTitle {
   margin-left: 25%;
+  color: green;
 }
 
 .logoutButton {
   background: #3498db;
   background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
-  border-radius: 28px;
+  border-radius: 10px;
   font-family: Georgia;
   color: #ffffff;
   font-size: 20px;
@@ -145,6 +147,7 @@ input {
   background: #3cb0fd;
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
+  color: red;
 }
 
 
@@ -294,12 +297,11 @@ input {
 
 .startGame {
   float: center;
+  margin-top: 300px;
+  font-size: 100px;
+  opacity: .9;
 }
 
-.startGame {
-  margin-top: 300px;
-  padding-top: 20px;
-}
 
 /*  CARDS */
 
@@ -373,6 +375,18 @@ input {
 
 .refreshButton:focus {
   outline:0;
+}
+
+.currentBet {
+  font-size: 30px;
+  font-weight: bold;
+  color: yellow;
+}
+
+.firstDeal {
+  margin-top: 200px;
+  font-size: 100px;
+  opacity: .9;
 }
 
 .dealerCards {

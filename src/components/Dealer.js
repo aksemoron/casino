@@ -23,7 +23,7 @@ class Dealer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    dealer: state.dealer, dealerValue: state.dealerValue
+    dealer: state.blackjack.dealer, dealerValue: state.blackjack.dealerValue
   }
 }
 

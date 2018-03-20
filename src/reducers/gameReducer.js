@@ -6,8 +6,8 @@ let defaultState =
     userId: "",
     bankroll: "",
     leaderBoard: [],
-    // alter bet
     currentBet: 0,
+    // alter bet
     changeBet: true,
     double: false,
     togglePlayerBank: true,
@@ -172,7 +172,7 @@ export default function managePlayer(state = defaultState, action) {
           return {...state}
         }
       case 'BET_ALL_IN':
-        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: 0, dealt: true}
+        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: state.bankroll - state.bankroll}
 
       // UPDATE BANKROLL
       case 'INCREASE_BANK':
@@ -188,14 +188,18 @@ export default function managePlayer(state = defaultState, action) {
           return {...state, currentBet: 0, togglePlayerBank: false}
         }
       case 'ADD_MONEY':
-        return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
+        if (state.username === "kenny") {
+          return {...state, bankroll: 100000, currentBet: 0, togglePlayerBank: false}
+        } else {
+          return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
+        }
       case 'SETTLE_PLAYER_BANK':
         return {...state, togglePlayerBank: true}
 
       // CARD COUNTER
       case 'TOGGLE_CARD_COUNTER':
         return {...state, cardCounterOn: !state.cardCounterOn}
-    default:
+      default:
       return state;
   }
 }
