@@ -121,35 +121,38 @@ export default function manageBlackjack(state = defaultState, action) {
                   cardCount: state.cardCount + handleCardCount(action.payload.cards)
                }
       }
-      // CARD COUNTER
-      case 'TOGGLE_CARD_COUNTER':
-        return {...state, cardCounterOn: !state.cardCounterOn}
-      case 'SETTLE_PLAYER_BANK':
-        return {...state, togglePlayerBank: true}
-      default:
-        return state;
-        // UPDATE BANKROLL
-      case 'INCREASE_BANK':
-        if (state.double) {
-          return {...state, double: false, togglePlayerBank: false}
-        } else {
-          return {...state, togglePlayerBank: false}
-        }
-      case 'DECREASE_BANK':
-        if (state.double) {
-          return {...state, togglePlayerBank: false}
-        } else {
-          return {...state, togglePlayerBank: false}
-        }
-      case 'ADD_MONEY':
-        if (state.username === "kenny") {
-          return {...state, togglePlayerBank: false}
-        } else {
-          return {...state, togglePlayerBank: false}
-        }
-      // HANDLE LOG OUT
-      case 'HANDLE_LOGOUT':
-        localStorage.removeItem("token")
-        return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
+    // CARD COUNTER
+    case 'TOGGLE_CARD_COUNTER':
+      return {...state, cardCounterOn: !state.cardCounterOn}
+    case 'SETTLE_PLAYER_BANK':
+      return {...state, togglePlayerBank: true}
+
+      // UPDATE BANKROLL
+    case 'INCREASE_BANK':
+      if (state.double) {
+        return {...state, double: false, togglePlayerBank: false}
+      } else {
+        return {...state, togglePlayerBank: false}
+      }
+    case 'DECREASE_BANK':
+      if (state.double) {
+        return {...state, togglePlayerBank: false}
+      } else {
+        return {...state, togglePlayerBank: false}
+      }
+    case 'ADD_MONEY':
+      if (state.username === "kenny") {
+        return {...state, togglePlayerBank: false}
+      } else {
+        return {...state, togglePlayerBank: false}
+      }
+    // HANDLE LOG OUT
+    case 'HANDLE_LOGOUT':
+      localStorage.removeItem("token")
+      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
+    case 'RESET_GAMES':
+      return {...state, started: false}
+    default:
+      return state;
   }
 }

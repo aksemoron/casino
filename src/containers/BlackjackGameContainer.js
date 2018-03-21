@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '../components/Table'
+import BlackjackTable from '../components/BlackjackTable'
 import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
 import RightContainer from './RightContainer'
@@ -23,8 +23,8 @@ class BlackjackGameContainer extends React.Component {
         <NavBar />
         {this.props.loggedIn ?
           <div className="allFeatures">
-            <div className="table" >
-              <Table />
+            <div className="blackjackTable" >
+              <BlackjackTable />
             </div>
             <div className="leftContainer">
               <LeftContainer />

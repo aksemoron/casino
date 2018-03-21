@@ -116,6 +116,10 @@ export const topUsers = () => {
 }
 
 
+export const resetGames = () => {
+  return {type: 'RESET_GAMES'}
+}
+
 export const handleLogout = () => {
   return {type: 'HANDLE_LOGOUT'}
 }

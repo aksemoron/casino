@@ -5,7 +5,7 @@ import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
 import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, betAllIn  } from '../actions/game'
 
-class Table extends React.Component {
+class BlackjackTable extends React.Component {
 
   updateUserBankroll (bankroll) {
     return fetch(`http://localhost:3000/users/${this.props.userId}`, {
@@ -108,4 +108,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, betAllIn })(Table)
+export default connect(mapStateToProps, {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, betAllIn })(BlackjackTable)

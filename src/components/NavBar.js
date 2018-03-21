@@ -1,14 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { handleLogout } from '../actions/game'
+import { handleLogout, resetGames } from '../actions/game'
+import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
+
   render() {
-    const {handleLogout} = this.props
+    const {handleLogout, resetGames} = this.props
     return(
       <div className="navbar">
         <div className="gameTitle">
-          Flatiron's Blackjack Training School
+          <Link to="/choosegame" onClick={()=>resetGames()}>Flatiron's Casino Training School</Link>
         </div>
         <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
       </div>
@@ -20,4 +22,4 @@ const mapStateToProps = (state) => {
   return {username: state.user.username}
 }
 
-export default connect(mapStateToProps, {handleLogout})(NavBar)
+export default connect(mapStateToProps, {handleLogout, resetGames })(NavBar)
