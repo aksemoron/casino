@@ -1,205 +1,205 @@
-let defaultState =
-  {
-    // user details
-    loggedIn: false,
-    username: "",
-    userId: "",
-    bankroll: "",
-    leaderBoard: [],
-    currentBet: 0,
-    // alter bet
-    changeBet: true,
-    double: false,
-    togglePlayerBank: true,
-    // deal cards
-    dealer: [],
-    dealerValue: "",
-    player: [],
-    playerValue: "",
-    // start game
-    started: false,
-    deckId: "",
-    remaining: "",
-    dealt: false,
-    // handle dealer cards
-    stand: false,
-    finished: false,
-    giveDealerCards: true,
-    // counting cards
-    cardCount: 0,
-    cardCounterOn: true,
-
-  }
-
-  const cardValues = { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
-                 '9': 9, '10': 10, 'JACK': 10, 'QUEEN': 10, 'KING': 10, 'ACE': 11}
-
-  const getValue = (cards) =>{
-    let count = 0
-    let mappedCards = cards.map(card => card.value)
-    cards.forEach(card => {count += cardValues[card.value]})
-    if (mappedCards.includes("ACE") && count > 21) {
-      count -= (10 * mappedCards.filter(card => {return card === "ACE"}).length)
-    }
-    return count
-  }
-
-  const handleCardCount = (cards) => {
-    let count = 0
-    let mappedCards = cards.map(card => cardValues[card.value])
-    mappedCards.forEach(value => {
-      if (value <= 6) {
-        count += 1
-      } else if (value >= 10) {
-        count -= 1
-      }
-    })
-    return count
-  }
-
-export default function managePlayer(state = defaultState, action) {
-  switch (action.type) {
-    // Login / Users
-    case 'HANDLE_LOGIN':
-      if (action.payload.token) {
-        localStorage.setItem("token", action.payload.token)
-        return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
-      } else {
-        return {...state}
-      }
-    case 'CREATE_USER':
-      if (action.payload.token) {
-        localStorage.setItem("token", action.payload.token)
-        return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
-      } else {
-        return {...state}
-      }
-    case 'FIND_USER':
-      if (action.payload.error) {
-        return {...state, loggedIn: false}
-      } else {
-        return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
-      }
-    case 'HANDLE_LOGOUT':
-      localStorage.removeItem("token")
-      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
-    case 'TOP_USERS':
-      return {...state, leaderBoard: action.payload }
-    // GAME
-    case 'START_GAME':
-      return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false,
-        giveDealerCards: true, cardCount: 0}
-    case 'DEAL_CARDS':
-      if (state.remaining < 6) {
-        return {...state, started: false, dealt: false}
-      } else if (getValue(action.payload.cards.slice(1,3)) === 21 ){
-        return {...state,
-          dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
-          player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
-          remaining: action.payload.remaining, dealt: true, stand: true, finished: true, giveDealerCards: false,
-          changeBet: true, double: true, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
-         }
-      } else {
-        return {...state,
-          dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
-          player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
-          remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
-          changeBet: false, double: false, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
-        }
-      }
-    // GAME ACTIONS
-    case 'CLICK_HIT':
-      let newPlayerValue = getValue([...state.player, action.payload.cards[0]])
-      if (newPlayerValue >= 21) {
-        return {...state,
-          player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
-          remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
-          cardCount: state.cardCount + handleCardCount(action.payload.cards)
-        }
-      } else {
-        return {...state,
-          player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
-          remaining: action.payload.remaining, cardCount: state.cardCount + handleCardCount(action.payload.cards)
-        }
-      }
-    case 'CLICK_DOUBLE':
-      let newPlayerValueDouble = getValue([...state.player, action.payload.cards[0]])
-        if (newPlayerValueDouble >= 21) {
-          return {...state,
-            player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
-            remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
-            double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
-          }
-        } else {
-          return {...state,
-            player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
-            remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: true, changeBet: true,
-            double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
-          }
-        }
-
-    case 'CLICK_STAND':
-      if (state.playerValue === 21) {
-        return {...state, stand: true, giveDealerCards: false, finished: true}
-      } else {
-        return {...state, stand: true, changeBet: true}
-      }
-    case 'DEAL_TO_DEALER':
-      let newDealerValue = getValue([...state.dealer, action.payload.cards[0]])
-      if(newDealerValue < 17 && state.playerValue <= 21) {
-        return {...state,
-          dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
-          remaining: action.payload.remaining, giveDealerCards: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
-        }
-      } else {
-        return {...state, dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
-                  remaining: action.payload.remaining, giveDealerCards: false, finished: true,
-                  cardCount: state.cardCount + handleCardCount(action.payload.cards)
-               }
-      }
-
-      // INCREMENT BET
-      case 'INCREASE_BET':
-        if (state.bankroll > 0) {
-          return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
-        } else {
-          return {...state}
-        }
-      case 'DECREASE_BET':
-        if (state.currentBet > 0) {
-          return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
-        } else {
-          return {...state}
-        }
-      case 'BET_ALL_IN':
-        return {...state, currentBet: state.currentBet + state.bankroll, bankroll: state.bankroll - state.bankroll}
-
-      // UPDATE BANKROLL
-      case 'INCREASE_BANK':
-        if (state.double) {
-          return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), togglePlayerBank: false}
-        } else {
-          return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), togglePlayerBank: false}
-        }
-      case 'DECREASE_BANK':
-        if (state.double) {
-          return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), togglePlayerBank: false}
-        } else {
-          return {...state, currentBet: 0, togglePlayerBank: false}
-        }
-      case 'ADD_MONEY':
-        if (state.username === "kenny") {
-          return {...state, bankroll: 100000, currentBet: 0, togglePlayerBank: false}
-        } else {
-          return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
-        }
-      case 'SETTLE_PLAYER_BANK':
-        return {...state, togglePlayerBank: true}
-
-      // CARD COUNTER
-      case 'TOGGLE_CARD_COUNTER':
-        return {...state, cardCounterOn: !state.cardCounterOn}
-      default:
-      return state;
-  }
-}
+// let defaultState =
+//   {
+//     // user details
+//     loggedIn: false,
+//     username: "",
+//     userId: "",
+//     bankroll: "",
+//     leaderBoard: [],
+//     currentBet: 0,
+//     // alter bet
+//     changeBet: true,
+//     double: false,
+//     togglePlayerBank: true,
+//     // deal cards
+//     dealer: [],
+//     dealerValue: "",
+//     player: [],
+//     playerValue: "",
+//     // start game
+//     started: false,
+//     deckId: "",
+//     remaining: "",
+//     dealt: false,
+//     // handle dealer cards
+//     stand: false,
+//     finished: false,
+//     giveDealerCards: true,
+//     // counting cards
+//     cardCount: 0,
+//     cardCounterOn: true,
+//
+//   }
+//
+//   const cardValues = { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
+//                  '9': 9, '10': 10, 'JACK': 10, 'QUEEN': 10, 'KING': 10, 'ACE': 11}
+//
+//   const getValue = (cards) =>{
+//     let count = 0
+//     let mappedCards = cards.map(card => card.value)
+//     cards.forEach(card => {count += cardValues[card.value]})
+//     if (mappedCards.includes("ACE") && count > 21) {
+//       count -= (10 * mappedCards.filter(card => {return card === "ACE"}).length)
+//     }
+//     return count
+//   }
+//
+//   const handleCardCount = (cards) => {
+//     let count = 0
+//     let mappedCards = cards.map(card => cardValues[card.value])
+//     mappedCards.forEach(value => {
+//       if (value <= 6) {
+//         count += 1
+//       } else if (value >= 10) {
+//         count -= 1
+//       }
+//     })
+//     return count
+//   }
+//
+// export default function managePlayer(state = defaultState, action) {
+//   switch (action.type) {
+//     // Login / Users
+//     case 'HANDLE_LOGIN':
+//       if (action.payload.token) {
+//         localStorage.setItem("token", action.payload.token)
+//         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+//       } else {
+//         return {...state}
+//       }
+//     case 'CREATE_USER':
+//       if (action.payload.token) {
+//         localStorage.setItem("token", action.payload.token)
+//         return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
+//       } else {
+//         return {...state}
+//       }
+//     case 'FIND_USER':
+//       if (action.payload.error) {
+//         return {...state, loggedIn: false}
+//       } else {
+//         return {...state, loggedIn: true, userId: action.payload.id, username: action.payload.username, bankroll: action.payload.bankroll}
+//       }
+//     case 'HANDLE_LOGOUT':
+//       localStorage.removeItem("token")
+//       return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
+//     case 'TOP_USERS':
+//       return {...state, leaderBoard: action.payload }
+//     // GAME
+//     case 'START_GAME':
+//       return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false,
+//         giveDealerCards: true, cardCount: 0}
+//     case 'DEAL_CARDS':
+//       if (state.remaining < 6) {
+//         return {...state, started: false, dealt: false}
+//       } else if (getValue(action.payload.cards.slice(1,3)) === 21 ){
+//         return {...state,
+//           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
+//           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
+//           remaining: action.payload.remaining, dealt: true, stand: true, finished: true, giveDealerCards: false,
+//           changeBet: true, double: true, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
+//          }
+//       } else {
+//         return {...state,
+//           dealer: action.payload.cards.slice(0,1), dealerValue: getValue(action.payload.cards.slice(0,1)),
+//           player: action.payload.cards.slice(1,3), playerValue: getValue(action.payload.cards.slice(1,3)),
+//           remaining: action.payload.remaining, dealt: true, stand: false, finished: false, giveDealerCards: true,
+//           changeBet: false, double: false, togglePlayerBank: true, cardCount: handleCardCount(action.payload.cards)
+//         }
+//       }
+//     // GAME ACTIONS
+//     case 'CLICK_HIT':
+//       let newPlayerValue = getValue([...state.player, action.payload.cards[0]])
+//       if (newPlayerValue >= 21) {
+//         return {...state,
+//           player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
+//           remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
+//           cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//         }
+//       } else {
+//         return {...state,
+//           player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValue,
+//           remaining: action.payload.remaining, cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//         }
+//       }
+//     case 'CLICK_DOUBLE':
+//       let newPlayerValueDouble = getValue([...state.player, action.payload.cards[0]])
+//         if (newPlayerValueDouble >= 21) {
+//           return {...state,
+//             player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
+//             remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: false, changeBet: true,
+//             double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//           }
+//         } else {
+//           return {...state,
+//             player: [...state.player, action.payload.cards[0]], playerValue: newPlayerValueDouble,
+//             remaining: action.payload.remaining, finished: true, stand: true, giveDealerCards: true, changeBet: true,
+//             double: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//           }
+//         }
+//
+//     case 'CLICK_STAND':
+//       if (state.playerValue === 21) {
+//         return {...state, stand: true, giveDealerCards: false, finished: true}
+//       } else {
+//         return {...state, stand: true, changeBet: true}
+//       }
+//     case 'DEAL_TO_DEALER':
+//       let newDealerValue = getValue([...state.dealer, action.payload.cards[0]])
+//       if(newDealerValue < 17 && state.playerValue <= 21) {
+//         return {...state,
+//           dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
+//           remaining: action.payload.remaining, giveDealerCards: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//         }
+//       } else {
+//         return {...state, dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
+//                   remaining: action.payload.remaining, giveDealerCards: false, finished: true,
+//                   cardCount: state.cardCount + handleCardCount(action.payload.cards)
+//                }
+//       }
+//
+//       // INCREMENT BET
+//       case 'INCREASE_BET':
+//         if (state.bankroll > 0) {
+//           return {...state, currentBet: state.currentBet + 100, bankroll: state.bankroll - 100}
+//         } else {
+//           return {...state}
+//         }
+//       case 'DECREASE_BET':
+//         if (state.currentBet > 0) {
+//           return {...state, currentBet: state.currentBet - 100, bankroll: state.bankroll + 100}
+//         } else {
+//           return {...state}
+//         }
+//       case 'BET_ALL_IN':
+//         return {...state, currentBet: state.currentBet + state.bankroll, bankroll: state.bankroll - state.bankroll}
+//
+//       // UPDATE BANKROLL
+//       case 'INCREASE_BANK':
+//         if (state.double) {
+//           return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet)), togglePlayerBank: false}
+//         } else {
+//           return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet)), togglePlayerBank: false}
+//         }
+//       case 'DECREASE_BANK':
+//         if (state.double) {
+//           return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet), togglePlayerBank: false}
+//         } else {
+//           return {...state, currentBet: 0, togglePlayerBank: false}
+//         }
+//       case 'ADD_MONEY':
+//         if (state.username === "kenny") {
+//           return {...state, bankroll: 100000, currentBet: 0, togglePlayerBank: false}
+//         } else {
+//           return {...state, bankroll: 1000, currentBet: 0, togglePlayerBank: false}
+//         }
+//       case 'SETTLE_PLAYER_BANK':
+//         return {...state, togglePlayerBank: true}
+//
+//       // CARD COUNTER
+//       case 'TOGGLE_CARD_COUNTER':
+//         return {...state, cardCounterOn: !state.cardCounterOn}
+//       default:
+//       return state;
+//   }
+// }

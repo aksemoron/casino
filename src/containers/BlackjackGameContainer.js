@@ -3,17 +3,17 @@ import Table from '../components/Table'
 import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
 import RightContainer from './RightContainer'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { findUser } from '../actions/game'
 import { Redirect } from 'react-router'
 
-class GameContainer extends React.Component {
+class BlackjackGameContainer extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem("token")
     if (token) {
       this.props.findUser(token)
-      .then(()=>this.props.history.push("/"))
+      .then(()=>this.props.history.push("/blackjack"))
     }
   }
 
@@ -45,4 +45,4 @@ const mapStateToProps = (state) => {
   return {loggedIn: state.user.loggedIn}
 }
 
-export default connect(mapStateToProps, {findUser})(GameContainer)
+export default connect(mapStateToProps, {findUser})(BlackjackGameContainer)

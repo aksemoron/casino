@@ -18,7 +18,7 @@ let defaultState = {
   giveDealerCards: true,
   // counting cards
   cardCount: 0,
-  cardCounterOn: true,
+  cardCounterOn: false,
 }
 
 const cardValues = { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
@@ -147,5 +147,9 @@ export default function manageBlackjack(state = defaultState, action) {
         } else {
           return {...state, togglePlayerBank: false}
         }
+      // HANDLE LOG OUT
+      case 'HANDLE_LOGOUT':
+        localStorage.removeItem("token")
+        return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
   }
 }

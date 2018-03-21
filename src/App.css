@@ -29,14 +29,14 @@
 /* CUSTOM CSS  */
 
 /* GLOBAL */
+
 html {
-  background-image: url("./icons/background.jpg");
-  background-repeat: no-repeat;
+  background-image: url("./icons/login.jpg");
+  height: 100%;
   background-size: 100%;
 }
 
 button {
-  padding: 5px 15px;
   background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
   border: 1px solid black;
   cursor: pointer;
@@ -66,27 +66,28 @@ button:hover {
 
 /*  LOGIN */
 
-.loginBox {
-  margin-top: 25%;
-  margin-left: 40%;
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.loginForm {
+  margin-left: 30px;
+  margin-top: 20px;
 }
 
 .loginBackground {
   position: absolute;
-  background: white;
-  height: 500px;
+  margin-top: -130px;
+  background-color: white;
+  opacity : .1;
+  height: 600px;
   width: 500px;
-  opacity: .15;
-  margin: -100px;
-  margin-left: -70px;
-  margin-top: -250px;
+  border: 100px solid grey;
   pointer-events: none;
 }
 
-.loginImage {
-  margin-left: 120px;
-  margin-top: 40px;
-}
 
 input {
   height: 50px;
@@ -98,16 +99,14 @@ input {
   display: flex;
   justify-content: center;
   height: 50px;
-  width: 350px;
+  width: 360px;
   margin-top: 10px;
 }
 
 .createUserButton {
-  display: flex;
-  justify-content: center;
   height: 50px;
-  width: 350px;
-  margin-top: 10px;
+  width: 360px;
+  margin-top: 5px;
 }
 
 /*  NAV */
@@ -117,9 +116,9 @@ input {
   font-weight: bold;
   color: white;
   background: #001F3B;
-  opacity: .9;
   padding-left: -500px;
   display: flex;
+  height: 7%;
   justify-content: center;
   justify-content: space-between;
 }
@@ -290,10 +289,14 @@ input {
 
 /*  TABLE */
 .table {
-  position: absolute;
   left: 0;
   right: 0;
+  background-image: url("./icons/background.jpg");
+  background-size: 100%;
+  position: absolute;
+  height: 93%;
 }
+
 
 .startGame {
   float: center;
