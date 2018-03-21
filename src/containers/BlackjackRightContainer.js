@@ -2,7 +2,7 @@ import React from 'react'
 import Cardcount from '../components/Cardcount'
 import BasicStrategy from '../components/BasicStrategy'
 
-class RightContainer extends React.Component {
+class BlackjackRightContainer extends React.Component {
   render() {
     return (
       <div className="rightSide">
@@ -13,4 +13,4 @@ class RightContainer extends React.Component {
   }
 }
 
-export default RightContainer
+export default BlackjackRightContainer

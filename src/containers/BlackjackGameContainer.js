@@ -2,7 +2,7 @@ import React from 'react'
 import BlackjackTable from '../components/BlackjackTable'
 import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
-import RightContainer from './RightContainer'
+import BlackjackRightContainer from './BlackjackRightContainer'
 import { connect } from 'react-redux'
 import { findUser } from '../actions/game'
 import { Redirect } from 'react-router'
@@ -30,7 +30,7 @@ class BlackjackGameContainer extends React.Component {
               <LeftContainer />
             </div>
             <div className="rightContainer">
-              <RightContainer />
+              <BlackjackRightContainer />
             </div>
           </div>
         :

@@ -3,7 +3,6 @@ import NavBar from './NavBar'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { findUser } from '../actions/game'
-import LeftContainer from '../containers/LeftContainer'
 
 class ChooseGame extends React.Component {
 
@@ -20,21 +19,20 @@ class ChooseGame extends React.Component {
       <div>
         <NavBar />
         <div className="leftContainer">
-          <LeftContainer/>
         </div>
         <div className="rightContainer">
         </div>
         {this.props.loggedIn ?
           <div className="chooseGame">
-            <div className="pokerButton" onClick={() => this.choosePoker()}>
-              <img src={require("../icons/pokerButton.jpg")} width="500px" alt="poker"/>
-              <div className="pokerTitle">
+            <div className="pokerButton" >
+              <img onClick={() => this.choosePoker()} src={require("../icons/pokerButton.jpg")} alt="poker"/>
+              <div className="pokerTitle" onClick={() => this.choosePoker()} >
                 Play Poker
               </div>
             </div>
-            <div className="blackjackButton" onClick={() => this.chooseBlackjack()}>
-              <img src={require("../icons/blackjackButton.jpg")} width="500px" alt="blackjack"/>
-              <div className="blackjackTitle">
+            <div className="blackjackButton" >
+              <img onClick={() => this.chooseBlackjack()} src={require("../icons/blackjackButton.jpg")} alt="blackjack"/>
+              <div className="blackjackTitle" onClick={() => this.chooseBlackjack()}>
                 Play Blackjack
               </div>
             </div>
