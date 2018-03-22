@@ -124,7 +124,6 @@ input {
 }
 
 .gameTitle a {
-  margin-left: 500px;
   color: green;
   text-decoration: none;
 }
@@ -387,7 +386,7 @@ input {
 }
 
 .firstDeal {
-  margin-top: 200px;
+  margin-top: 300px;
   font-size: 100px;
   opacity: .9;
 }
@@ -514,8 +513,69 @@ input {
   height: 93%;
 }
 
+/* Poker Top Container  */
+.pokerTopContainer {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  width: 82%;
+  background-image: url('./icons/sky.jpg');
+  height: 20%;
+  position: absolute;
+  top: 40;
+  left: 18%;
+  opacity: .8;
+}
+
+.pokerPayout {
+  font-size: 22px;
+}
+
+.pokerPayoutTitle {
+  position: absolute;
+  left: -10%;
+  width: 110%
+}
+
+.pokerIndividualPayouts {
+  color: yellow;
+  position: absolute;
+  left: 20%;
+  right: 30%;
+  margin-top: 65px;
+}
+
+/* Poker Cards */
+.pokerGameContent {
+  position: absolute;
+  left: 25%;
+  bottom: 5%;
+}
+
 .pokerPlayerCardsImages {
   display: flex;
   justify-content: center;
-  margin-top: 300px;
+}
+
+.evaluatedHand {
+  font-size: 60px;
+  color: white;
+  background: black;
+  opacity: .9;
+}
+
+.clickedPokerCardImage {
+  cursor: pointer;
+  border-radius: 12px;
+  border: 3px solid red;
+}
+
+.heldCard {
+  font-size: 30px;
+  color: red;
+}
+
+.pokerDealButton {
+  margin-top: 50px;
+  font-size: 100px;
 }

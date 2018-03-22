@@ -20,3 +20,46 @@ export const pokerDealCards = (deckId) => {
     }))
   };
 };
+
+export const drawCards = (deckId, count) => {
+  return function(dispatch) {
+    return fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${count}`)
+    .then(res=>res.json())
+    .then(json => dispatch({
+      type: 'DRAW_CARDS',
+      payload: json
+    }))
+  };
+};
+
+export const shuffleCards = (deckId) => {
+  return function(dispatch) {
+    return fetch(`https://deckofcardsapi.com/api/deck/${deckId}/shuffle/`)
+    .then(res=>res.json())
+    .then(json => dispatch({
+      type: 'SHUFFLE_CARDS',
+      payload: json
+    }))
+  };
+};
+
+export const addNewCard = (card) => {
+  return{
+    type:'ADD_NEW_CARD',
+    payload: card
+  }
+};
+
+export const removeNewCard = (card) => {
+  return{
+    type:'REMOVE_NEW_CARD',
+    payload: card
+  }
+};
+
+export const payPokerPlayer = (rank) => {
+  return{
+    type:'PAY_POKER_PLAYER',
+    payload: rank
+  }
+};

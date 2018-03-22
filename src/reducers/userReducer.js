@@ -71,6 +71,9 @@ export default function manageUser(state = defaultState, action) {
           return {...state, bankroll: 1000, currentBet: 0}
         }
 
+      // POKER
+      case 'PAY_POKER_PLAYER':
+        return {...state, bankroll: state.bankroll + (state.currentBet * action.payload), currentBet: 0}
       default:
         return state;
   }

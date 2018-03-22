@@ -151,7 +151,7 @@ export default function manageBlackjack(state = defaultState, action) {
       localStorage.removeItem("token")
       return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
     case 'RESET_GAMES':
-      return {...state, started: false}
+      return {...state, started: false, dealt: false}
     default:
       return state;
   }
