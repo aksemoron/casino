@@ -1,5 +1,4 @@
 export const pokerStartGame = () => {
-
   return function(dispatch) {
     fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
     .then(res => res.json())
@@ -42,6 +41,17 @@ export const shuffleCards = (deckId) => {
     }))
   };
 };
+
+export const topUsers = () => {
+  return function(dispatch) {
+    fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(json => dispatch({
+      type: 'TOP_USERS',
+      payload: json
+    }))
+  }
+}
 
 export const addNewCard = (card) => {
   return{

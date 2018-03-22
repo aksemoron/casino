@@ -557,10 +557,25 @@ input {
   justify-content: center;
 }
 
+.finishedPokerPlayerCardsImages {
+
+}
+
 .evaluatedHand {
   font-size: 60px;
   color: white;
   background: black;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  opacity: .9;
+}
+
+.finishedEvaluatedHand {
+  font-size: 60px;
+  color: white;
+  background: green;
+  border-radius: 20px;
+  margin-bottom: 10px;
   opacity: .9;
 }
 
@@ -578,4 +593,9 @@ input {
 .pokerDealButton {
   margin-top: 50px;
   font-size: 100px;
+}
+
+.pokerButton {
+  margin-left: 300px;
+  margin-top: 400px;
 }
