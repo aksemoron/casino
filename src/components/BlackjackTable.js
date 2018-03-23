@@ -51,8 +51,7 @@ class BlackjackTable extends React.Component {
   }
 
   render() {
-    console.log(api)
-    const {remaining, startGame, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards,
+    const {startGame, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards,
            changeBet, bankroll, currentBet, dealCards} = this.props
     return (
       <div>
@@ -90,7 +89,7 @@ class BlackjackTable extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    started: state.blackjack.started, remaining: state.blackjack.remaining, dealt: state.blackjack.dealt, deckId: state.blackjack.deckId,
+    started: state.blackjack.started, dealt: state.blackjack.dealt, deckId: state.blackjack.deckId,
     finished: state.blackjack.finished, stand: state.blackjack.stand, dealerValue: state.blackjack.dealerValue,
     playerValue: state.blackjack.playerValue, giveDealerCards: state.blackjack.giveDealerCards, togglePlayerBank: state.blackjack.togglePlayerBank,
     changeBet: state.blackjack.changeBet,
