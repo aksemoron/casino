@@ -72,7 +72,11 @@ button:hover {
   background-clip: text;
 }
 
-
+.error {
+  font-size: 20px;
+  font-style: italic;
+  color: white;
+}
 /*  LOGIN */
 
 .login {

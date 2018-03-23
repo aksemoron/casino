@@ -5,6 +5,7 @@ let defaultState = {
   bankroll: "",
   leaderBoard: [],
   currentBet: 0,
+  error: "",
 }
 
 export default function manageUser(state = defaultState, action) {
@@ -14,6 +15,8 @@ export default function manageUser(state = defaultState, action) {
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
+      } else if (action.payload.error) {
+        return {...state, error: action.payload.error}
       } else {
         return {...state}
       }
@@ -21,6 +24,8 @@ export default function manageUser(state = defaultState, action) {
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.userId, username: action.payload.username, bankroll: action.payload.bankroll}
+      } else if (action.payload.error) {
+        return {...state, error: action.payload.error}
       } else {
         return {...state}
       }

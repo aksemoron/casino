@@ -46,6 +46,7 @@ class Login extends React.Component {
             <div className="loginPassword">
               <input type="password" placeholder="Password" onChange={this.handlePasswordInput}/>
             </div>
+            {this.props.error ? <div className="error">{this.props.error}</div> : null }
             <button className="submitButton">Submit</button>
             <button className="createUserButton" onClick={() => this.props.createUser(this.state.username, this.state.password)}>Create User</button>
           </form>
@@ -59,7 +60,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {loggedIn: state.user.loggedIn}
+  return {loggedIn: state.user.loggedIn, error: state.user.error}
 }
 
 export default connect(mapStateToProps, { handleLogin, createUser, findUser, handleLogout })(Login)
