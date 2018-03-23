@@ -1,3 +1,5 @@
+import api from '../url'
+
 export const pokerStartGame = () => {
   return function(dispatch) {
     fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
@@ -44,7 +46,7 @@ export const shuffleCards = (deckId) => {
 
 export const topUsers = () => {
   return function(dispatch) {
-    fetch('http://localhost:3000/users')
+    fetch(`${api}users`)
     .then(res => res.json())
     .then(json => dispatch({
       type: 'TOP_USERS',

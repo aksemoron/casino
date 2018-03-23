@@ -24,7 +24,7 @@ class PokerTopContainer extends React.Component {
             <span className="payoutName">Royal Flush</span> &nbsp;&nbsp;&nbsp;&nbsp; <span className="payoutNumbers">800 to 1</span>
           </div>
           <div>
-            <span className="payoutName">Straight Flush</span> &nbsp;&nbsp;&nbsp; <span className="payoutNumbers">50 to 1</span>
+            <span className="payoutName">Straight Flush</span> &nbsp;&nbsp; <span className="payoutNumbers">50 to 1</span>
           </div>
           <div>
             <span className="payoutName">Four of a Kind</span> &nbsp;&nbsp; <span className="payoutNumbers">25 to 1</span>

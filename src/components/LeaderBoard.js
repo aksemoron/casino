@@ -6,7 +6,7 @@ class LeaderBoard extends React.Component {
   componentDidMount() {
     this.props.topUsers()
   }
-
+  
   sortLeaderBoard = (leaderBoard) => {
     return leaderBoard.sort(function(a,b){
       return b.bankroll - a.bankroll

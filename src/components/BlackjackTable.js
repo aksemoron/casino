@@ -56,17 +56,6 @@ class BlackjackTable extends React.Component {
       <div>
         <div>
           {!started ? <button className="startGame" onClick={() => startGame()}>START GAME</button> : null }
-          {started ?
-            <div className="cardsLeft">
-              <div className="remainingCards">
-                <img src={require(`../icons/cards.svg`)} width="60px" alt=""/>
-                <span className="tooltiptext">Cards Left: {remaining}</span>
-              </div>
-              <div className="refresh">
-                <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>
-                <span className="tooltiptext">Refresh</span>
-              </div>
-            </div> : null }
             <div className="currentBet">
               {started ? `Current Bet: $${currentBet}` : null }
             </div>
