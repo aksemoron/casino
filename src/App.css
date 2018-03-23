@@ -539,6 +539,7 @@ input {
 
 .pokerIndividualPayouts {
   color: yellow;
+  background: black;
   position: absolute;
   left: 20%;
   right: 30%;
@@ -557,10 +558,6 @@ input {
   justify-content: center;
 }
 
-.finishedPokerPlayerCardsImages {
-
-}
-
 .evaluatedHand {
   font-size: 60px;
   color: white;
@@ -572,8 +569,8 @@ input {
 
 .finishedEvaluatedHand {
   font-size: 60px;
-  color: white;
-  background: green;
+  color: yellow;
+  background: black;
   border-radius: 20px;
   margin-bottom: 10px;
   opacity: .9;
@@ -595,7 +592,7 @@ input {
   font-size: 100px;
 }
 
-.pokerButton {
+.pokerBeginButton {
   margin-left: 300px;
   margin-top: 400px;
 }

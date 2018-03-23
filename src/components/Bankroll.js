@@ -3,8 +3,45 @@ import {connect} from 'react-redux'
 import { increaseBet, decreaseBet, addMoney } from '../actions/game'
 
 class Bankroll extends React.Component {
+  state = {
+    timeout: undefined,
+    start: 120
+  }
+
+  increaseUserBet = () => {
+    this.props.increaseBet()
+    this.setState({
+      timeout: setTimeout(this.increaseUserBet, this.state.start),
+      start: this.state.start - 1
+    })
+  }
+
+  decreaseUserBet = () => {
+    this.props.decreaseBet()
+    this.setState({
+      timeout: setTimeout(this.decreaseUserBet, this.state.start),
+      start: this.state.start - 1
+    })
+  }
+
+  increaseBetMouseDown = () => {
+    this.increaseUserBet()
+  }
+
+  decreaseBetMouseDown = () => {
+    this.decreaseUserBet()
+  }
+
+  onMouseUp = () => {
+    this.setState({
+      timeout: clearInterval(this.state.timeout),
+      start: 120
+    })
+  }
+
+
   render() {
-    const {username, started, changeBet, bankroll, currentBet, decreaseBet, increaseBet, addMoney} = this.props
+    const {username, started, changeBet, bankroll, currentBet, addMoney} = this.props
     return started ? (
       <div className="bankrollBox">
         <div className="panelHeader">{username}'s BANK</div>
@@ -21,8 +58,8 @@ class Bankroll extends React.Component {
         <div>
             {bankroll !== 0 || currentBet !== 0 ?
               <div className="betButtons">
-                <button className="decreaseButton" onClick={() => decreaseBet()} >-</button>
-                <button className="increaseButton" onClick={() => increaseBet()} >+</button>
+                <button className="decreaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.decreaseBetMouseDown} >-</button>
+                <button className="increaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.increaseBetMouseDown} >+</button>
               </div>
             : null}
           {((bankroll === 0 && currentBet === 0) && (started)) ?

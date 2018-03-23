@@ -21,7 +21,7 @@ class PokerTopContainer extends React.Component {
             Full House --- 9 to 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Two Pair --- 2 to 1
           </div>
           <div>
-            Flush --- 6 to 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jacks or Better --- 1 to 1
+            Flush --- 6 to 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; One Pair --- 1 to 1
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
 import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, betAllIn  } from '../actions/game'
 
-class BlackjackTable extends React.Component { 
+class BlackjackTable extends React.Component {
 
   updateUserBankroll (bankroll) {
     return fetch(`http://localhost:3000/users/${this.props.userId}`, {
@@ -84,7 +84,7 @@ class BlackjackTable extends React.Component {
               {(changeBet && started) ?
                 <div>
                   &nbsp;&nbsp;&nbsp;{bankroll !== 0 || currentBet !== 0 ? <button onClick={()=>dealCards(deckId)}>DEAL</button>: null }
-                  &nbsp;{bankroll !== 0 ? <button onClick={()=>this.userbetAllIn()}>All In</button> : null}
+                  {/* &nbsp;{bankroll !== 0 ? <button onClick={()=>this.userbetAllIn()}>All In</button> : null} */}
                 </div>
               : null}
             </div>
