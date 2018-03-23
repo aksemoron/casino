@@ -4,11 +4,12 @@ import Player from '../components/Player'
 import PlayerOptions from '../components/PlayerOptions'
 import {connect} from 'react-redux'
 import {startGame, dealCards, dealToDealer, increaseBank, decreaseBank, topUsers, settlePlayerBank, betAllIn  } from '../actions/game'
+import api from '../url'
 
 class BlackjackTable extends React.Component {
 
   updateUserBankroll (bankroll) {
-    return fetch(`http://localhost:3000/users/${this.props.userId}`, {
+    return fetch(`${api}${this.props.userId}`, {
       method: "PATCH",
       headers: {"Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,6 +51,7 @@ class BlackjackTable extends React.Component {
   }
 
   render() {
+    console.log(api)
     const {remaining, startGame, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards,
            changeBet, bankroll, currentBet, dealCards} = this.props
     return (

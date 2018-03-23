@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { drawCards, shuffleCards, pokerDealCards, payPokerPlayer, topUsers } from '../actions/pokerActions'
 import PokerCardImage from './PokerCardImage'
 import NewPokerCardImage from './NewPokerCardImage'
+import api from '../url'
 
 class PokerPlayerCards extends React.Component {
 
@@ -14,7 +15,7 @@ class PokerPlayerCards extends React.Component {
   }
 
   updateUserBankroll (bankroll) {
-    return fetch(`http://localhost:3000/users/${this.props.userId}`, {
+    return fetch(`${api}${this.props.userId}`, {
       method: "PATCH",
       headers: {"Content-Type": "application/json" },
       body: JSON.stringify({
