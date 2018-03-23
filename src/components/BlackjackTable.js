@@ -9,7 +9,7 @@ import api from '../url'
 class BlackjackTable extends React.Component {
 
   updateUserBankroll (bankroll) {
-    return fetch(`${api}${this.props.userId}`, {
+    return fetch(`${api}users/${this.props.userId}`, {
       method: "PATCH",
       headers: {"Content-Type": "application/json" },
       body: JSON.stringify({
