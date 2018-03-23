@@ -6,6 +6,13 @@ import NewPokerCardImage from './NewPokerCardImage'
 
 class PokerPlayerCards extends React.Component {
 
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.finished && !nextProps.changeBet) {
+      this.payPlayer(this.evaluateHand(nextProps.newPlayerCards).rank)
+      this.updateUserBankroll(this.props.bankroll)
+    }
+  }
+
   updateUserBankroll (bankroll) {
     return fetch(`http://localhost:3000/users/${this.props.userId}`, {
       method: "PATCH",
@@ -29,8 +36,7 @@ class PokerPlayerCards extends React.Component {
   evaluateHand(cards) {
     let Hand = require('pokersolver').Hand;
     let mappedCards = cards.map(card => {return this.fixCard(card.code)})
-    let newHand = Hand.solve(mappedCards)
-    return newHand
+    return Hand.solve(mappedCards)
   }
 
   payPlayer(rank) {
@@ -64,12 +70,6 @@ class PokerPlayerCards extends React.Component {
         break;
       default:
         this.props.payPokerPlayer(0)
-    }
-  }
-
-  componentWillReceiveProps(nextProps, nextState) {
-    if (nextProps.finished && !nextProps.changeBet) {
-      this.payPlayer(this.evaluateHand(nextProps.newPlayerCards).rank)
     }
   }
 

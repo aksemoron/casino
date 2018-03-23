@@ -10,7 +10,9 @@ class NavBar extends React.Component {
     return(
       <div className="navbar">
         <div className="gameTitle">
-          <Link to="/choosegame" onClick={()=>resetGames()}>Flatiron's Casino Training School</Link>
+          <Link to="/choosegame" onClick={()=>resetGames()}>
+            <span className="rainbow">Flatiron's Casino Training School</span>
+          </Link>
         </div>
         <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
       </div>

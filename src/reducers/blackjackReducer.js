@@ -52,7 +52,7 @@ export default function manageBlackjack(state = defaultState, action) {
     // GAME
     case 'START_GAME':
       return {...state, deckId: action.payload.deck_id, remaining: action.payload.remaining, stand: false, started: true, dealt: false,
-        giveDealerCards: true, cardCount: 0}
+        giveDealerCards: true, cardCount: 0, changeBet: true,}
     case 'DEAL_CARDS':
       if (state.remaining < 6) {
         return {...state, started: false, dealt: false}
