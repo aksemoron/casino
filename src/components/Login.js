@@ -48,8 +48,8 @@ class Login extends React.Component {
             </div>
             {this.props.error ? <div className="error">{this.props.error}</div> : null }
             <button className="submitButton">Submit</button>
-            <button className="createUserButton" onClick={() => this.props.createUser(this.state.username, this.state.password)}>Create User</button>
           </form>
+          <button className="loginForm createUserButton" onClick={() => this.props.createUser(this.state.username, this.state.password)}>Create User</button>
         </div>
         <div className="loginBackground"></div>
       </div>

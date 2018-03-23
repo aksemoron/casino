@@ -12,6 +12,7 @@ export default function manageUser(state = defaultState, action) {
   switch (action.type) {
     // Login / Users
     case 'HANDLE_LOGIN':
+      console.log(action.payload.error)
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
@@ -37,7 +38,7 @@ export default function manageUser(state = defaultState, action) {
       }
     case 'HANDLE_LOGOUT':
       localStorage.removeItem("token")
-      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false }
+      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false, error: "" }
     case 'TOP_USERS':
       return {...state, leaderBoard: action.payload }
 
