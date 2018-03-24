@@ -12,7 +12,6 @@ export default function manageUser(state = defaultState, action) {
   switch (action.type) {
     // Login / Users
     case 'HANDLE_LOGIN':
-      console.log(action.payload.error)
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token)
         return {...state, loggedIn: true, userId: action.payload.user.id, username: action.payload.user.username, bankroll: action.payload.user.bankroll}
@@ -83,6 +82,9 @@ export default function manageUser(state = defaultState, action) {
       // Both
       case 'RESET_GAMES':
         return {...state, started: false, dealt: false, currentBet: 0,}
+      case 'HANDLE_LOGOUT':
+        localStorage.removeItem("token")
+        return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
       default:
         return state;
   }

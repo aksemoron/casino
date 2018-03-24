@@ -32,6 +32,10 @@ export default function managePoker(state=defaultState, action) {
       }
     case 'PAY_POKER_PLAYER':
       return {...state, changeBet: true}
+    // RESET GAMES
+    case 'HANDLE_LOGOUT':
+      localStorage.removeItem("token")
+      return {...state, loggedIn: false, started: false, dealt: false}
     case 'RESET_GAMES':
       return {...state, started: false, dealt: false}
     default:
