@@ -82,9 +82,6 @@ export default function manageUser(state = defaultState, action) {
       // Both
       case 'RESET_GAMES':
         return {...state, started: false, dealt: false, currentBet: 0,}
-      case 'HANDLE_LOGOUT':
-        localStorage.removeItem("token")
-        return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: "", dealt: false}
       default:
         return state;
   }
