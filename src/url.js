@@ -1,8 +1,10 @@
 let api;
 console.log(process.env)
 console.log(process.env.NODE_ENV)
-console.log(NODE_ENV)
-if (NODE_ENV === "development") {
+console.log(process.env.API)
+console.log(API)
+console.log(ENV['API'])
+if (process.env.API === "development") {
   api = "http://localhost:3000/"
 } else {
   api = "https://blackjack-backend.herokuapp.com/"
