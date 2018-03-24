@@ -1,13 +1,10 @@
 let api;
 console.log(process.env)
-if (process.env.API === "development") {
-  api = "http://localhost:3000/"
-} else {
+if (process.env.REACT_APP_API === "production") {
   api = "https://blackjack-backend.herokuapp.com/"
+} else {
+  api = "http://localhost:3000/"
 }
-
-//   api = "http://localhost:3000/"
-// api = "https://blackjack-backend.herokuapp.com/"
 
 
 export default api
