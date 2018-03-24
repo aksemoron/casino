@@ -34,7 +34,6 @@ html {
   background-image: url("./icons/login.jpg");
   height: 100%;
   background-size: 100%;
-  overflow: hidden;
 }
 
 button {
@@ -132,13 +131,11 @@ input {
   padding-left: -500px;
   display: flex;
   height: 7%;
-  justify-content: center;
 }
 
 .gameTitle a {
-  color: green;
+  color: red;
   text-decoration: none;
-  float: center;
 }
 
 .logoutButton {
@@ -256,7 +253,7 @@ input {
   z-index: 1;
   top: 100%;
   left: 50%;
-  margin-left: -80px;
+  margin-left: -180px;
 }
 
 .remainingCards:hover .tooltiptext {
@@ -277,7 +274,7 @@ input {
   z-index: 1;
   top: 100%;
   left: 50%;
-  margin-left: -20px;
+  margin-left: 60px;
 }
 
 .refresh:hover .tooltiptext {
@@ -386,6 +383,7 @@ input {
   background-size: 100%;
   position: absolute;
   height: 93%;
+
 }
 
 .startGame {
@@ -399,6 +397,7 @@ input {
   font-size: 50px;
   font-weight: bold;
   color: yellow;
+  background: black;
 }
 
 .firstDeal {
