@@ -6,7 +6,7 @@ class LeaderBoard extends React.Component {
   componentDidMount() {
     this.props.topUsers()
   }
-  
+
   sortLeaderBoard = (leaderBoard) => {
     return leaderBoard.sort(function(a,b){
       return b.bankroll - a.bankroll
@@ -15,7 +15,7 @@ class LeaderBoard extends React.Component {
 
   render() {
     const {leaderBoard} = this.props
-    let sortedLeaderBoard = this.sortLeaderBoard(leaderBoard).slice(0,5)
+    let sortedLeaderBoard = this.sortLeaderBoard(leaderBoard).slice(0,10)
     let rank = 1
     let leaders = sortedLeaderBoard.map(leader => {
       return <div key={leader.id} className="leaderScore">
@@ -31,7 +31,7 @@ class LeaderBoard extends React.Component {
     return(
       <div className="leaderboard">
         <div className="panelHeader">
-          LeaderBoard
+          Leaderboard
         </div>
         {leaders}
       </div>

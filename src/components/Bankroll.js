@@ -39,12 +39,16 @@ class Bankroll extends React.Component {
     })
   }
 
+  capitalize = (name) => {
+    return name[0].toUpperCase() + name.slice(1, name.length).toLowerCase()
+  }
+
 
   render() {
     const {username, started, changeBet, bankroll, currentBet, addMoney} = this.props
     return started ? (
       <div className="bankrollBox">
-        <div className="panelHeader">{username}'s BANK</div>
+        <div className="panelHeader">{this.capitalize(username)}'s Bank</div>
         <div>
           <img className="bankImage" src={require("../icons/ancient.svg")} width="150px" alt=""/>
         </div>

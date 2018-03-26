@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Special+Elite');
+
+
 .App {
   text-align: center;
 }
@@ -124,8 +127,7 @@ input {
 /*  NAV */
 
 .navbar {
-  font-size: 60px;
-  font-weight: bold;
+  font-size: 50px;
   color: white;
   background: #001F3B;
   padding-left: -500px;
@@ -136,13 +138,14 @@ input {
 .gameTitle a {
   color: red;
   text-decoration: none;
+  font-family: 'Special Elite', cursive;
+  padding-bottom: -10px;
 }
 
 .logoutButton {
   background: #3498db;
   background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
   border-radius: 10px;
-  font-family: Georgia;
   color: #ffffff;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
@@ -184,7 +187,7 @@ input {
 }
 
 .leaderboard {
-  font-size: 40px;
+  font-size: 25px;
   padding-bottom: 15px;
   border-radius: 5px;
   top: 0;
@@ -232,6 +235,7 @@ input {
   display: flex;
   justify-content: center;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .remainingCardsIcon {
@@ -242,7 +246,6 @@ input {
 .remainingCards .tooltiptext {
   visibility: hidden;
   width: 100px;
-  font-weight: bold;
   font-size: 20px;
   background-color: black;
   text-align: center;
@@ -263,7 +266,6 @@ input {
 .refresh .tooltiptext {
   visibility: hidden;
   width: 100px;
-  font-weight: bold;
   font-size: 20px;
   background-color: black;
   text-align: center;
@@ -300,7 +302,7 @@ input {
 }
 
 .cardCounter {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .cardCountButton {
@@ -535,7 +537,6 @@ input {
   font-weight: bold;
   width: 79%;
   background-image: url('./icons/sky.jpg');
-  height: 18%;
   position: absolute;
   top: 40;
   left: 21%;
@@ -543,7 +544,7 @@ input {
 }
 
 .pokerPayout {
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .pokerPayoutTitle {
@@ -560,6 +561,7 @@ input {
   position: absolute;
   margin-top: 60px;
   margin-left: 40px;
+  padding-top: 10px;
 }
 
 .middlePokerPayouts {
@@ -569,6 +571,8 @@ input {
   margin-top: 60px;
   left: 0;
   right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .rightPokerPayouts {
@@ -578,6 +582,7 @@ input {
   right: 0;
   margin-top: 60px;
   margin-right: 40px;
+  padding-top: 10px;
 }
 
 .payoutNumbers {
