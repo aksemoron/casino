@@ -47,7 +47,7 @@ class Bankroll extends React.Component {
   render() {
     const {username, started, changeBet, bankroll, currentBet, addMoney} = this.props
     return started ? (
-      <div className="bankrollBox">
+      <div className="bankrollBox" onMouseUp={this.onMouseUp}>
         <div className="panelHeader">{this.capitalize(username)}'s Bank</div>
         <div>
           <img className="bankImage" src={require("../icons/ancient.svg")} width="150px" alt=""/>

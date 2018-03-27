@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Special+Elite');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Special+Elite|Bitter|Anton|Abril+Fatface');
 
 
 .App {
@@ -64,6 +64,7 @@ button:hover {
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   font-size: 40px;
+  font-family: "Bitter", cursive;
 }
 
 .rainbow {
@@ -142,6 +143,12 @@ input {
   padding-bottom: -10px;
 }
 
+.titlelogo {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+
 .logoutButton {
   background: #3498db;
   background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
@@ -193,7 +200,6 @@ input {
   top: 0;
   position: absolute;
   width: 100%;
-  overflow: scroll;
 }
 
 .leaderScore {
@@ -400,6 +406,7 @@ input {
   font-weight: bold;
   color: yellow;
   background: black;
+  font-family: "Bitter", cursive;
 }
 
 .firstDeal {
@@ -462,6 +469,7 @@ input {
   right: 0%;
   left: 0%;
   margin-top: 7%;
+  font-family: "Abril Fatface", cursive;
 }
 
 .pokerButton img {
@@ -484,7 +492,7 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 60px;
-  color: orange;
+  color: #e69500;
   cursor: pointer;
 }
 
@@ -511,7 +519,7 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 60px;
-  color: orange;
+  color: #e69500;
   cursor: pointer;
 }
 
@@ -534,7 +542,6 @@ input {
 .pokerTopContainer {
   color: white;
   font-size: 50px;
-  font-weight: bold;
   width: 79%;
   background-image: url('./icons/sky.jpg');
   position: absolute;
@@ -545,6 +552,7 @@ input {
 
 .pokerPayout {
   font-size: 24px;
+  font-family: "Anton", cursive;
 }
 
 .pokerPayoutTitle {
@@ -552,15 +560,17 @@ input {
   width: 100%;
   color: black;
   background: yellow;
-  font-size: 50px;
+  font-size: 65px;
+  font-weight: bold;
+  font-family: "Special Elite", cursive;
 }
 
 .leftPokerPayouts {
   color: white;
   background: black;
   position: absolute;
-  margin-top: 60px;
-  margin-left: 40px;
+  margin-top: 75px;
+  margin-left: 140px;
   padding-top: 10px;
 }
 
@@ -568,7 +578,7 @@ input {
   color: white;
   background: black;
   position: absolute;
-  margin-top: 60px;
+  margin-top: 75px;
   left: 0;
   right: 0;
   padding-top: 10px;
@@ -580,8 +590,8 @@ input {
   background: black;
   position: absolute;
   right: 0;
-  margin-top: 60px;
-  margin-right: 40px;
+  margin-top: 75px;
+  margin-right: 140px;
   padding-top: 10px;
 }
 

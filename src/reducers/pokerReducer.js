@@ -10,6 +10,7 @@ let defaultState = {
 }
 
 export default function managePoker(state=defaultState, action) {
+  
   switch(action.type) {
     case 'POKER_START_GAME':
       return {...state, deckId: action.payload.deck_id, started: true, draw: false, finished: false,

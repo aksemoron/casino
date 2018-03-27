@@ -12,6 +12,7 @@ class NavBar extends React.Component {
         <div className="gameTitle">
           <Link to="/choosegame" onClick={()=>resetGames()}>
             <span className="rainbow">Flatiron's Casino</span>
+            <img className="titlelogo" src={require("../icons/titlelogo.png")} width="40px" alt=""/>
           </Link>
         </div>
         <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
@@ -20,8 +21,4 @@ class NavBar extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {username: state.user.username}
-}
-
-export default connect(mapStateToProps, {handleLogout, resetGames })(NavBar)
+export default connect(null, {handleLogout, resetGames })(NavBar)

@@ -15,20 +15,19 @@ class BlackjackTable extends React.Component {
       body: JSON.stringify({
         bankroll: bankroll
       })
-    }).then(this.props.topUsers())
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.giveDealerCards && this.props.stand) {
       this.props.dealToDealer(this.props.deckId)
     } else if (!this.props.giveDealerCards && this.props.togglePlayerBank) {
-        this.settlePlayerBankroll(this.props.dealerValue, this.props.playerValue)
+      this.settlePlayerBankroll(this.props.dealerValue, this.props.playerValue)
     }
   }
 
   checkWinner = (dealer, player) => {
     this.updateUserBankroll(this.props.bankroll)
-
     if ((dealer > player || player > 21) && (dealer <= 21)) {
       return <div className="playAgain" style={{color:"red"}}>Dealer Wins</div>
     } else if (dealer > 21 || dealer < player) {
@@ -92,7 +91,7 @@ const mapStateToProps = (state) => {
     started: state.blackjack.started, dealt: state.blackjack.dealt, deckId: state.blackjack.deckId,
     finished: state.blackjack.finished, stand: state.blackjack.stand, dealerValue: state.blackjack.dealerValue,
     playerValue: state.blackjack.playerValue, giveDealerCards: state.blackjack.giveDealerCards, togglePlayerBank: state.blackjack.togglePlayerBank,
-    changeBet: state.blackjack.changeBet,
+    changeBet: state.blackjack.changeBet, remaining: state.blackjack.remaining,
     loggedIn: state.user.loggedIn, userId: state.user.userId, currentBet: state.user.currentBet,
     bankroll: state.user.bankroll
   }

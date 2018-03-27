@@ -22,16 +22,25 @@ let defaultState = {
 }
 
 const cardValues = { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
-               '9': 9, '10': 10, 'JACK': 10, 'QUEEN': 10, 'KING': 10, 'ACE': 11}
+               '9': 9, '10': 10, 'JACK': 10, 'QUEEN': 10, 'KING': 10, 'ACE': 11, 'ace': 1}
 
-const getValue = (cards) =>{
-  let count = 0
-  let mappedCards = cards.map(card => card.value)
-  cards.forEach(card => {count += cardValues[card.value]})
-  if (mappedCards.includes("ACE") && count > 21) {
-    count -= (10 * mappedCards.filter(card => {return card === "ACE"}).length)
+
+function getValue(cards) {
+  if (cards.length === 1) {
+    return cardValues[cards[0].value]
   }
-  return count
+ let mappedCards = [...cards].map(card => card.value)
+ let count = mappedCards.reduce(getSum)
+ while (mappedCards.includes("ACE") && count > 21) {
+   let index = mappedCards.indexOf("ACE")
+   mappedCards[index] = "ace"
+   count = mappedCards.reduce(getSum)
+ }
+ return count
+}
+
+const getSum = (total, num) => {
+  return parseInt(cardValues[total] || total, 10) + parseInt(cardValues[num], 10);
 }
 
 const handleCardCount = (cards) => {
@@ -110,7 +119,7 @@ export default function manageBlackjack(state = defaultState, action) {
       }
     case 'DEAL_TO_DEALER':
       let newDealerValue = getValue([...state.dealer, action.payload.cards[0]])
-      if(newDealerValue < 17 && state.playerValue <= 21) {
+      if ((newDealerValue < 17 && state.playerValue <= 21) || (newDealerValue === getValue([...state.dealer]))) {
         return {...state,
           dealer: [...state.dealer, action.payload.cards[0]], dealerValue: newDealerValue,
           remaining: action.payload.remaining, giveDealerCards: true, cardCount: state.cardCount + handleCardCount(action.payload.cards)

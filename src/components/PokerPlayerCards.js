@@ -10,6 +10,11 @@ class PokerPlayerCards extends React.Component {
   componentWillReceiveProps(nextProps, nextState) {
     if (nextProps.finished && !nextProps.changeBet) {
       this.payPlayer(this.evaluateHand(nextProps.newPlayerCards).rank)
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.finished && this.props.changeBet) {
       this.updateUserBankroll(this.props.bankroll)
     }
   }
@@ -21,13 +26,12 @@ class PokerPlayerCards extends React.Component {
       body: JSON.stringify({
         bankroll: bankroll
       })
-    }).then(this.props.topUsers())
+    })
   }
 
   playAgain() {
     this.props.shuffleCards(this.props.deckId)
     this.props.pokerDealCards(this.props.deckId)
-    this.updateUserBankroll(this.props.bankroll)
   }
 
   fixCard(card) {

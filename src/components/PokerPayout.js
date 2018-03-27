@@ -1,12 +1,12 @@
 import React from 'react'
 
-class PokerTopContainer extends React.Component {
+class PokerPayout extends React.Component {
 
   render() {
     return (
       <div className="pokerPayout">
         <div className="pokerPayoutTitle panelHeader">
-          Poker Pay Outs
+          Poker Payouts
         </div>
         <div className="middlePokerPayouts">
           <div>
@@ -46,4 +46,4 @@ class PokerTopContainer extends React.Component {
   }
 }
 
-export default PokerTopContainer
+export default PokerPayout

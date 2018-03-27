@@ -2,7 +2,7 @@ import React from 'react'
 import PokerTable from '../components/PokerTable'
 import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
-import PokerTopContainer from './PokerTopContainer'
+import PokerPayout from '../components/PokerPayout'
 import {connect} from 'react-redux'
 import { findUser } from '../actions/game'
 import { Redirect } from 'react-router'
@@ -31,7 +31,7 @@ class PokerGameContainer extends React.Component {
               <PokerTable />
             </div>
             <div className="pokerTopContainer">
-              <PokerTopContainer />
+              <PokerPayout />
             </div>
             <div className="leftContainer">
               <LeftContainer />
