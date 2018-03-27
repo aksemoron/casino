@@ -2,7 +2,7 @@ import api from '../url'
 
 export const startGame = () => {
   return function(dispatch) {
-    fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?cards=AS,5S,KS,AH,5H,KH,AD,5D,KD,AC,5C,KC,AS,5S,KS`)
+    fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=8`)
     .then(res => res.json())
     .then(cards => dispatch({
       type: `START_GAME`,

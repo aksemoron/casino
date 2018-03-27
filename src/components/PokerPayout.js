@@ -38,7 +38,7 @@ class PokerPayout extends React.Component {
             <span className="payoutName">Two Pair</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span className="payoutNumbers">2 to 1</span>
           </div>
           <div>
-            <span className="payoutName">One Pair</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span className="payoutNumbers">1 to 1</span>
+            <span className="payoutName">One Pair</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span className="payoutNumbers">1 to 1</span>
           </div>
         </div>
       </div>
