@@ -40,7 +40,7 @@ class Bankroll extends React.Component {
   }
 
   capitalize = (name) => {
-    return name[0].toUpperCase() + name.slice(1, name.length).toLowerCase()
+    return name[0].toUpperCase() + name.slice(1, name.length)
   }
 
 
