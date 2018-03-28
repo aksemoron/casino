@@ -86,7 +86,6 @@ class PokerPlayerCards extends React.Component {
 
   render() {
     const { playerCards, drawCards, deckId, newPlayerCards, draw, bankroll  } = this.props
-
     let cards = playerCards.map((card, index) => <PokerCardImage key={card.code + index} card={card}  /> )
     let newCards = newPlayerCards.map((card, index) => <NewPokerCardImage key={card.code + index} card={card}  /> )
     let count = 5 - newPlayerCards.length
