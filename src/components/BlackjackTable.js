@@ -73,7 +73,7 @@ class BlackjackTable extends React.Component {
               {(changeBet && started) ?
                 <div>
                   &nbsp;&nbsp;&nbsp;{bankroll !== 0 || currentBet !== 0 ? <button onClick={()=>dealCards(deckId)}>DEAL</button>: null }
-                  {/* &nbsp;{bankroll !== 0 ? <button onClick={()=>this.userbetAllIn()}>All In</button> : null}  */}
+                  &nbsp;{bankroll !== 0 ? <button onClick={()=>this.userbetAllIn()}>All In</button> : null} 
                 </div>
               : null}
             </div>
