@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { drawCards, shuffleCards, pokerDealCards, payPokerPlayer, topUsers } from '../actions/pokerActions'
+import { betAllIn } from '../actions/game'
 import PokerCardImage from './PokerCardImage'
 import NewPokerCardImage from './NewPokerCardImage'
 import api from '../url'
@@ -44,6 +45,11 @@ class PokerPlayerCards extends React.Component {
     return Hand.solve(mappedCards)
   }
 
+  userbetAllIn = () => {
+    this.props.betAllIn()
+    this.playAgain()
+  }
+
   payPlayer(rank) {
     switch(true) {
       case(rank === 2):
@@ -79,7 +85,7 @@ class PokerPlayerCards extends React.Component {
   }
 
   render() {
-    const { playerCards, drawCards, deckId, newPlayerCards, draw,  } = this.props
+    const { playerCards, drawCards, deckId, newPlayerCards, draw, bankroll  } = this.props
 
     let cards = playerCards.map((card, index) => <PokerCardImage key={card.code + index} card={card}  /> )
     let newCards = newPlayerCards.map((card, index) => <NewPokerCardImage key={card.code + index} card={card}  /> )
@@ -106,8 +112,9 @@ class PokerPlayerCards extends React.Component {
       <div className="pokerPlayerCardsImages">
         {newCards}
       </div>
-      <div>
+      <div >
         <button className="pokerDealButton" onClick={()=>this.playAgain()}>PLAY AGAIN?</button>
+        &nbsp;&nbsp;{bankroll !== 0 ? <button className="pokerDealButton" onClick={()=>this.userbetAllIn()}>All In</button> : null}
       </div>
     </div>)
   }
@@ -126,4 +133,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { drawCards, shuffleCards, pokerDealCards, payPokerPlayer, topUsers })(PokerPlayerCards)
+export default connect(mapStateToProps, { drawCards, shuffleCards, pokerDealCards, payPokerPlayer, topUsers, betAllIn })(PokerPlayerCards)
