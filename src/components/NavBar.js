@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { handleLogout, resetGames } from '../actions/game'
+import { handleLogout, resetGames } from '../actions/blackjackActions'
 import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {

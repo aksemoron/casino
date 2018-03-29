@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
 import PokerPayout from '../components/PokerPayout'
 import {connect} from 'react-redux'
-import { findUser } from '../actions/game'
+import { findUser } from '../actions/blackjackActions'
 import { Redirect } from 'react-router'
 
 class PokerGameContainer extends React.Component {

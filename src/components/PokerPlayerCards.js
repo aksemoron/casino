@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { drawCards, shuffleCards, pokerDealCards, payPokerPlayer, topUsers } from '../actions/pokerActions'
-import { betAllIn } from '../actions/game'
+import { betAllIn } from '../actions/blackjackActions'
 import PokerCardImage from './PokerCardImage'
 import NewPokerCardImage from './NewPokerCardImage'
 import api from '../url'
@@ -113,7 +113,7 @@ class PokerPlayerCards extends React.Component {
       </div>
       <div >
         <button className="pokerDealButton" onClick={()=>this.playAgain()}>PLAY AGAIN?</button>
-        &nbsp;&nbsp;{bankroll !== 0 ? <button className="pokerDealButton" onClick={()=>this.userbetAllIn()}>All In</button> : null}
+        &nbsp;&nbsp;{bankroll !== 0 ? <button className="pokerDealButton" onClick={()=>this.userbetAllIn()}>ALL IN</button> : null}
       </div>
     </div>)
   }

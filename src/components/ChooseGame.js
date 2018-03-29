@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from './NavBar'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import { findUser } from '../actions/game'
+import { findUser } from '../actions/blackjackActions'
 
 class ChooseGame extends React.Component {
 

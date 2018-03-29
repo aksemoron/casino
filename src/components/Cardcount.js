@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { toggleCardCounter, startGame } from '../actions/game.js'
+import { toggleCardCounter, startGame } from '../actions/blackjackActions'
 
 class CardCount extends React.Component {
   render() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { topUsers } from '../actions/game'
+import { topUsers } from '../actions/blackjackActions'
 
 class LeaderBoard extends React.Component {
   componentDidMount() {

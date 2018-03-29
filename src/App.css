@@ -37,6 +37,7 @@ html {
   background-image: url("./icons/login.jpg");
   height: 100%;
   background-size: 100%;
+  overflow: hidden;
 }
 
 button {
@@ -128,7 +129,7 @@ input {
 /*  NAV */
 
 .navbar {
-  font-size: 50px;
+  font-size: 55px;
   color: white;
   background: #001F3B;
   padding-left: -500px;
@@ -190,7 +191,6 @@ input {
   position: absolute;
   left: 0;
   opacity: .8;
-  overflow: inherit;
 }
 
 .leaderboard {
@@ -213,7 +213,6 @@ input {
   width: 100%;
   bottom: 0;
   margin-bottom: -10px;
-  overflow: scroll;
 }
 
 /*  Right Side */
@@ -622,6 +621,7 @@ input {
   background: black;
   border-radius: 20px;
   margin-bottom: 10px;
+  font-family: "Abril";
   opacity: .9;
 }
 
@@ -631,6 +631,7 @@ input {
   background: black;
   border-radius: 20px;
   margin-bottom: 10px;
+  font-family: "Abril";
   opacity: .9;
 }
 

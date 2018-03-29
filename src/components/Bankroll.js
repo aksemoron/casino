@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { increaseBet, decreaseBet, addMoney } from '../actions/game'
+import { increaseBet, decreaseBet, addMoney } from '../actions/blackjackActions'
 
 class Bankroll extends React.Component {
   state = {

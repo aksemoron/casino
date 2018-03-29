@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 import LeftContainer from './LeftContainer'
 import BlackjackRightContainer from './BlackjackRightContainer'
 import { connect } from 'react-redux'
-import { findUser } from '../actions/game'
+import { findUser } from '../actions/blackjackActions'
 import { Redirect } from 'react-router'
 
 class BlackjackGameContainer extends React.Component {

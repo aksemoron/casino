@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { handleLogin, createUser, findUser, handleLogout } from '../actions/game'
+import { handleLogin, createUser, findUser, handleLogout } from '../actions/blackjackActions'
 import { Redirect } from 'react-router'
 
 class Login extends React.Component {

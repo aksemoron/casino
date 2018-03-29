@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {clickHit, clickStand, clickDouble} from '../actions/game'
+import {clickHit, clickStand, clickDouble} from '../actions/blackjackActions'
 
 class PlayerOptions extends React.Component {
   render() {
