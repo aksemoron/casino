@@ -23,15 +23,14 @@ class PokerCardImage extends React.Component{
 
   render() {
     const { image } = this.props.card
-    return this.state.clicked ? (
+    return this.state.clicked ?
+      (
       <div>
         <img className= "clickedPokerCardImage" onClick={()=>this.clickCard()} src={image} width="225px" alt="" />
-        <div className="heldCard">
-          HELD
-        </div>
+        <div className="heldCard"> HELD </div>
       </div>
       )
-      :
+    :
       (
       <div>
        <img onClick={()=>this.clickCard()} src={image} width="225px"  alt="" />

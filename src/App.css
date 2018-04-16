@@ -135,6 +135,7 @@ input {
   padding-left: -500px;
   display: flex;
   height: 7%;
+
 }
 
 .gameTitle a {
@@ -150,6 +151,31 @@ input {
   margin-bottom: -5px;
 }
 
+.navButtons {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+.chooseGameButton {
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+  float: right;
+}
+
+.chooseGameButton:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  color: green;
+}
+
 .logoutButton {
   background: #3498db;
   background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
@@ -158,10 +184,8 @@ input {
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
-  position: fixed;
-  right: 0;
   margin-top: 10px;
-  margin-bottom: 10px;
+  float: right;
 }
 
 .logoutButton:hover {
@@ -390,7 +414,6 @@ input {
   background-size: 100%;
   position: absolute;
   height: 93%;
-
 }
 
 .startGame {

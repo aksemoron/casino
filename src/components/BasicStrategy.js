@@ -7,7 +7,7 @@ class BasicStrategy extends React.Component {
         <div className="panelHeader">
           Basic Strategy
         </div>
-        <img src={require("../icons/blackjack.gif")} width="100%" height="450px" alt="what"/>
+        <img src={require("../icons/blackjack.gif")} width="100%" height="450px" alt=""/>
       </div>
     )
   }

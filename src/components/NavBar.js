@@ -15,7 +15,14 @@ class NavBar extends React.Component {
             <img className="titlelogo" src={require("../icons/titlelogo.png")} width="40px" alt=""/>
           </Link>
         </div>
-        <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
+
+        <div className="navButtons">
+          <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
+          <Link to="/choosegame" onClick={()=>resetGames()}>
+            <button className="chooseGameButton" onClick={()=>resetGames()}>Choose Game</button>
+          </Link>
+        </div>
+
       </div>
     )
   }

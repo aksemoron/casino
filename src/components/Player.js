@@ -22,7 +22,8 @@ class Player extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    player: state.blackjack.player, playerValue: state.blackjack.playerValue
+    player: state.blackjack.player,
+    playerValue: state.blackjack.playerValue
   }
 }
 
