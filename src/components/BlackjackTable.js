@@ -32,8 +32,9 @@ class BlackjackTable extends React.Component {
       return <div className="playAgain" style={{color:"red"}}>Dealer Wins</div>
     } else if (dealer > 21 || dealer < player) {
       return <div className="playAgain" style={{color:"green"}}>Player Wins</div>
-    } else
+    } else {
       return <div className="playAgain">Push</div>
+    }
   }
 
   settlePlayerBankroll = (dealer, player) => {
@@ -52,6 +53,7 @@ class BlackjackTable extends React.Component {
   render() {
     const {startGame, deckId, started, dealt, stand, dealerValue, playerValue, finished, giveDealerCards,
            changeBet, bankroll, currentBet, dealCards} = this.props
+
     return (
       <div>
         <div>
@@ -59,7 +61,7 @@ class BlackjackTable extends React.Component {
             <div className="currentBet">
               {started ? `Current Bet: $${currentBet}` : null }
             </div>
-      </div>
+        </div>
         <div>
           {(started && !dealt) ? <button className="firstDeal" onClick={()=>dealCards(deckId)}>DEAL</button>: null}
         </div>
@@ -77,7 +79,6 @@ class BlackjackTable extends React.Component {
                 </div>
               : null}
             </div>
-
           </div>
         : null
         }

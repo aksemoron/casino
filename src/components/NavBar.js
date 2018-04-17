@@ -19,7 +19,7 @@ class NavBar extends React.Component {
         <div className="navButtons">
           <button className="logoutButton" onClick={()=>handleLogout()}>Log Out</button>
           <Link to="/choosegame" onClick={()=>resetGames()}>
-            <button className="chooseGameButton" onClick={()=>resetGames()}>Choose Game</button>
+            <button className="chooseGameButton">Choose Game</button>
           </Link>
         </div>
 

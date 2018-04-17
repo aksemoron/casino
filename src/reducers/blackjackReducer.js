@@ -29,14 +29,15 @@ function getValue(cards) {
   if (cards.length === 1) {
     return cardValues[cards[0].value]
   }
- let mappedCards = [...cards].map(card => card.value)
- let count = mappedCards.reduce(getSum)
- while (mappedCards.includes("ACE") && count > 21) {
-   let index = mappedCards.indexOf("ACE")
-   mappedCards[index] = "ace"
-   count = mappedCards.reduce(getSum)
- }
- return count
+  let mappedCards = [...cards].map(card => card.value)
+  let count = mappedCards.reduce(getSum)
+  
+  while (mappedCards.includes("ACE") && count > 21) {
+    let index = mappedCards.indexOf("ACE")
+    mappedCards[index] = "ace"
+    count = mappedCards.reduce(getSum)
+  }
+  return count
 }
 
 const getSum = (total, num) => {

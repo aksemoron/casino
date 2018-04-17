@@ -8,15 +8,9 @@ class PokerTable extends React.Component {
     const {started, deckId, dealt, pokerStartGame, pokerDealCards  } = this.props
     return(
       <div>
-        <div>
-          {!started ? <button className="startGame pokerBeginButton" onClick={() => pokerStartGame()}>START GAME</button> : null }
-        </div>
-        <div>
-          {(started && !dealt) ? <button className="firstDeal pokerBeginButton" onClick={()=>pokerDealCards(deckId)}>DEAL</button>: null}
-        </div>
-        {dealt ?
-        <PokerPlayerCards />
-        : null}
+        {!started ? <button className="startGame pokerBeginButton" onClick={() => pokerStartGame()}>START GAME</button> : null }
+        {(started && !dealt) ? <button className="firstDeal pokerBeginButton" onClick={()=>pokerDealCards(deckId)}>DEAL</button>: null}
+        {dealt ? <PokerPlayerCards /> : null}
       </div>
     )
   }

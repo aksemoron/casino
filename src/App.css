@@ -490,62 +490,57 @@ input {
   position: absolute;
   right: 0%;
   left: 0%;
-  margin-top: 7%;
+  top: 10%;
   font-family: "Abril Fatface", cursive;
 }
 
-.pokerButton img {
+.chooseGameImage img {
   cursor: pointer;
   border-radius: 10%;
   border: 3px solid black;
-  width: 500px;
-  height: 300px;
+  width: 450px;
+  height: 250px;
+  opacity: .9;
 }
 
-.pokerButton img:hover {
+.chooseGameImage img:hover {
   cursor: pointer;
   border-radius: 10%;
   border: 3px solid white;
 }
 
-.pokerTitle {
+.chooseGameTitle {
   position: absolute;
-  top: 25%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 60px;
-  color: #e69500;
+  font-size: 80px;
+  color: white;
   cursor: pointer;
+}
+
+.pokerTitle {
+  top: 16%;
+  left: 50%;
 }
 
 .pokerTitle:hover {
   color: red;
 }
 
-.blackjackButton img {
-  cursor: pointer;
-  border-radius: 10%;
-  margin-top: 10px;
-  border: 3px solid black;
-  width: 500px;
-  height: 300px;
-}
-
-.blackjackButton img:hover {
-  border: 3px solid white;
-}
-
 .blackjackTitle {
-  position: absolute;
-  top: 75%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 60px;
-  color: #e69500;
-  cursor: pointer;
 }
 
 .blackjackTitle:hover {
+  color: red;
+}
+
+.rouletteTitle {
+  top: 83%;
+  left: 50%;
+}
+
+.rouletteTitle:hover {
   color: red;
 }
 

@@ -4,7 +4,7 @@ import { increaseBet, decreaseBet, addMoney } from '../actions/blackjackActions'
 
 class Bankroll extends React.Component {
   state = {
-    timeout: undefined,
+    timeout: null,
     start: 120
   }
 
@@ -40,7 +40,7 @@ class Bankroll extends React.Component {
   }
 
   capitalize = (name) => {
-    return name[0].toUpperCase() + name.slice(1, name.length)
+    return name[0].toUpperCase() + name.slice(1)
   }
 
 
@@ -60,12 +60,12 @@ class Bankroll extends React.Component {
         </div>
         {changeBet ?
         <div>
-            {bankroll !== 0 || currentBet !== 0 ?
-              <div className="betButtons">
-                <button className="decreaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.decreaseBetMouseDown} >-</button>
-                <button className="increaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.increaseBetMouseDown} >+</button>
-              </div>
-            : null}
+          {bankroll !== 0 || currentBet !== 0 ?
+            <div className="betButtons">
+              <button className="decreaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.decreaseBetMouseDown} >-</button>
+              <button className="increaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.increaseBetMouseDown} >+</button>
+            </div>
+          : null}
           {((bankroll === 0 && currentBet === 0) && (started)) ?
             <img className="piggy" onClick={() => addMoney()} src={require("../icons/piggybank.svg")} width="120px" alt=""/>
             : null }

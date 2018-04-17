@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PokerCardImage = props => {
+const PokerCardImage = (props) => {
 
   const { image } = props.card
   return (
@@ -8,7 +8,6 @@ const PokerCardImage = props => {
      <img src={image} width="225px"  alt="" />
     </div>
     )
-
 }
 
 export default PokerCardImage

@@ -5,6 +5,7 @@ import { toggleCardCounter, startGame } from '../actions/blackjackActions'
 class CardCount extends React.Component {
   render() {
     const {cardCount, cardCounterOn, toggleCardCounter, remaining, started, startGame} = this.props
+
     let trueCount = Math.ceil(cardCount / Math.round(remaining/52))
     return cardCounterOn ? (
       <div className="cardCounter">
@@ -36,7 +37,7 @@ class CardCount extends React.Component {
           True Count
         </div>
         <div style={{color: cardCount < 0 ? "red" : "green" }}>
-          {!isNaN(trueCount) ? trueCount :null}
+          {!isNaN(trueCount) ? trueCount : null}
         </div>
       </div>
     )
@@ -56,7 +57,8 @@ class CardCount extends React.Component {
             <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>
             <span className="tooltiptext">Refresh</span>
           </div>
-        </div> : null }
+        </div>
+      : null }
     </div>
 
   }

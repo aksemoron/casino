@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom'
 import BlackjackGameContainer from './containers/BlackjackGameContainer'
 import PokerGameContainer from './containers/PokerGameContainer'
+import RouletteGameContainer from './containers/RouletteGameContainer'
 import ChooseGame from './components/ChooseGame'
 import Login from './components/Login'
 
@@ -14,6 +15,7 @@ class App extends Component {
       <Switch>
         <Route exact path = "/blackjack" render={(routerProps) => <div className="App"><BlackjackGameContainer {...routerProps}/></div>} />
         <Route exact path = "/poker" render={(routerProps) => <div className="App"><PokerGameContainer {...routerProps}/></div>} />
+        <Route exact path = "/roulette" render={(routerProps) => <div className="App"><RouletteGameContainer {...routerProps}/></div>} />
         <Route exact path = "/choosegame" render={(routerProps) => <div className="App"><ChooseGame {...routerProps}/></div>} />
         <Route exact path = "/login" render={(routerProps) => <div className="loginBox"><Login {...routerProps}/></div>} />
         <Route render={(routerProps) => <div className="loginBox"><Login {...routerProps}/></div>} />
