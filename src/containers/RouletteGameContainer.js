@@ -1,12 +1,13 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
+import Roulette from '../components/Roulette'
 
 class RouletteGameContainer extends React.Component {
   render() {
     return (
       <div>
         <NavBar/>
-        <div>Hello</div>
+        <Roulette/>
       </div>
     )
   }

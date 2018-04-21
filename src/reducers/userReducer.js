@@ -37,7 +37,7 @@ export default function manageUser(state = defaultState, action) {
       }
     case 'HANDLE_LOGOUT':
       localStorage.removeItem("token")
-      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: 0, dealt: false, error: "" }
+      return {...state, loggedIn: false, started: false, username: "", userId: "", bankroll: 0, currentBet: 0, dealt: false, error: "" }
     case 'TOP_USERS':
       return {...state, leaderBoard: action.payload }
 
@@ -57,28 +57,32 @@ export default function manageUser(state = defaultState, action) {
       return {...state, currentBet: state.currentBet + state.bankroll, bankroll: 0}
 
     // UPDATE BANKROLL
+    case 'CLICK_DOUBLE':
+        return {...state, double: true}
     case 'INCREASE_BANK':
       if (state.double) {
-        return {...state, double: false, currentBet: 0, bankroll: (state.bankroll + (3*state.currentBet))}
+        return {...state, double: false, bankroll: (state.bankroll + (2*state.currentBet))}
       } else {
-        return {...state, currentBet: 0, bankroll: (state.bankroll + (2*state.currentBet))}
+        return {...state, bankroll: state.bankroll + state.currentBet}
       }
     case 'DECREASE_BANK':
       if (state.double) {
         return {...state, currentBet: 0, double: false, bankroll: (state.bankroll - state.currentBet)}
+      } else if (state.currentBet > state.bankroll) {
+        return {...state, currentBet: state.bankroll, bankroll: 0}
       } else {
         return {...state, currentBet: 0}
       }
     case 'ADD_MONEY':
-      if (state.username === "kenny") {
-        return {...state, bankroll: 100000, currentBet: 0}
-      } else {
-        return {...state, bankroll: 1000, currentBet: 0}
-      }
+      return {...state, bankroll: 1000, currentBet: 0}
 
     // POKER
     case 'PAY_POKER_PLAYER':
-      return {...state, bankroll: state.bankroll + (state.currentBet * action.payload), currentBet: 0}
+      if (action.payload === 0 && state.currentBet > state.bankroll) {
+        return {...state, currentBet: state.bankroll, bankroll: 0}
+      } else {
+        return {...state, bankroll: state.bankroll + (state.currentBet * action.payload - state.currentBet)}
+      }
     // Both
     case 'RESET_GAMES':
       return {...state, started: false, dealt: false, currentBet: 0,}

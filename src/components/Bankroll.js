@@ -60,13 +60,13 @@ class Bankroll extends React.Component {
         </div>
         {changeBet ?
         <div>
-          {bankroll !== 0 || currentBet !== 0 ?
+          {bankroll > 0 || currentBet > 0 ?
             <div className="betButtons">
               <button className="decreaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.decreaseBetMouseDown} >-</button>
               <button className="increaseButton" onMouseUp={this.onMouseUp} onMouseDown={this.increaseBetMouseDown} >+</button>
             </div>
           : null}
-          {((bankroll === 0 && currentBet === 0) && (started)) ?
+          {((bankroll <= 0 && currentBet === 0) && (started)) ?
             <img className="piggy" onClick={() => addMoney()} src={require("../icons/piggybank.svg")} width="120px" alt=""/>
             : null }
         </div>
