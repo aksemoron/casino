@@ -685,3 +685,8 @@ input {
   height: 93%;
   opacity: .8;
 }
+
+.rouletteTitle {
+  font-size: 30px;
+  color: white;
+}

@@ -4,7 +4,9 @@ class Roulette extends React.Component {
   render() {
     return(
       <div className="rouletteTable">
-        Hello
+        <div className="rouletteTitle">
+          Game Under Construction - Come back soon!
+        </div>
       </div>
     )
   }
