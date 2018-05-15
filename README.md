@@ -20,7 +20,7 @@ edit autoexec.bat
 - Log In with a new/old Username/Password
 ![login-image][login-image]
 - Choose the game you would like to play (Roulette is currently not available)
-![login-image][login-image]
+![choosegame-image][choosegame-image]
 
 ## Built With
 
