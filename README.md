@@ -1,10 +1,6 @@
 # Flatiron Casino
 >Welcome to Flatiron Casino, where you can practice playing Blackjack or Poker!
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
 ![login-image][login-image]
 
 ## Installation
