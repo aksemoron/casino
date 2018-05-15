@@ -15,12 +15,16 @@ Windows:
 edit autoexec.bat
 ```
 
-## Usage example
+## How to Play!
 
 - Log In with a new/old Username/Password
 ![login-image][login-image]
+
 - Choose the game you would like to play (Roulette is currently not available)
 ![choosegame-image][choosegame-image]
+
+- For poker, you are dealt 5 cards, pick the ones you want to keep and replace the onces you dont want!
+![poker-image][poker-image]
 
 ## Built With
 
@@ -42,3 +46,4 @@ edit autoexec.bat
 <!-- Markdown link & img dfn's -->
 [login-image]: ./screenshots/login.png
 [choosegame-image]: ./screenshots/choosegame.png
+[poker-image]: ./screenshots/poker.png
