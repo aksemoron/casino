@@ -18,15 +18,19 @@ edit autoexec.bat
 ## How to Play!
 
 - Log In with a new/old Username/Password
+
 ![login-image][login-image]
 
 - Choose the game you would like to play (Roulette is currently not available)
+
 ![choosegame-image][choosegame-image]
 
 - For poker, you are dealt 5 cards, pick the cards you want to keep and replace the others! The bigger your hand is, the more points you win back!
+
 ![poker-image][poker-image]
 
 - For blackjack, you can play against the dealer and try to get a better hand without going over 21. There is an optional card counter and basic strategy card to help you improve your game!
+
 ![blackjack-image][blackjack-image]
 
 Don't forget to place your bets to win more points and climb the leaderboard!
