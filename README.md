@@ -1,18 +1,14 @@
 # Flatiron Casino
 >Welcome to Flatiron Casino, where you can practice playing Blackjack or Poker!
 
+Try it out! - https://casino-frontend.herokuapp.com/
+
 ## Installation
 
 OS X & Linux:
 
 ```sh
 npm install
-```
-
-Windows:
-
-```sh
-edit autoexec.bat
 ```
 
 ## How to Play!
