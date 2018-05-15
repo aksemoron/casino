@@ -23,8 +23,13 @@ edit autoexec.bat
 - Choose the game you would like to play (Roulette is currently not available)
 ![choosegame-image][choosegame-image]
 
-- For poker, you are dealt 5 cards, pick the ones you want to keep and replace the onces you dont want!
+- For poker, you are dealt 5 cards, pick the cards you want to keep and replace the others! The bigger your hand is, the more points you win back!
 ![poker-image][poker-image]
+
+- For blackjack, you can play against the dealer and try to get a better hand without going over 21. There is an optional card counter and basic strategy card to help you improve your game!
+![blackjack-image][blackjack-image]
+
+Don't forget to place your bets to win more points and climb the leaderboard!
 
 ## Built With
 
@@ -47,3 +52,4 @@ edit autoexec.bat
 [login-image]: ./screenshots/login.png
 [choosegame-image]: ./screenshots/choosegame.png
 [poker-image]: ./screenshots/poker.png
+[blackjack-image]: ./screenshots/blackjack.png
