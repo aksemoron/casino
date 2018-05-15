@@ -1,8 +1,6 @@
 # Flatiron Casino
 >Welcome to Flatiron Casino, where you can practice playing Blackjack or Poker!
 
-![login-image][login-image]
-
 ## Installation
 
 OS X & Linux:
@@ -19,16 +17,15 @@ edit autoexec.bat
 
 ## Usage example
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+- Log In with a new/old Username/Password
+![login-image][login-image]
+- Choose the game you would like to play (Roulette is currently not available)
+![login-image][login-image]
 
-## Development setup
+## Built With
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
-```
+- React/Redux in Front end
+- Ruby on Rails in Back end
 
 ## Meta
 
@@ -44,3 +41,4 @@ npm test
 
 <!-- Markdown link & img dfn's -->
 [login-image]: ./screenshots/login.png
+[choosegame-image]: ./screenshots/choosegame.png
