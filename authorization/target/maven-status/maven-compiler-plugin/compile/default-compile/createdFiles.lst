@@ -1,0 +1,7 @@
+authorization\Main.class
+authorization\rest\Registration.class
+authorization\rest\Bankroll.class
+authorization\rest\Login.class
+authorization\dto\LoginDto.class
+authorization\rest\Users.class
+authorization\rest\CurrentUser.class

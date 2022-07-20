@@ -1,0 +1,692 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Special+Elite|Bitter|Anton|Abril+Fatface');
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* CUSTOM CSS  */
+
+/* GLOBAL */
+
+html {
+  background-image: url("icons/login.jpg");
+  height: 100%;
+  background-size: 100%;
+  overflow: scroll;
+}
+
+button {
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+  margin-right: 5px;
+}
+
+button:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  color: white;
+}
+
+.panelHeader {
+  background: #001F3B;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  font-size: 40px;
+  font-family: "Bitter", cursive;
+}
+
+.rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.error {
+  font-size: 20px;
+  font-style: italic;
+  color: white;
+}
+/*  LOGIN */
+
+.login {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.loginForm {
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.loginBackground {
+  position: absolute;
+  margin-top: -130px;
+  background-color: white;
+  opacity : .1;
+  height: 600px;
+  width: 500px;
+  border: 100px solid grey;
+  pointer-events: none;
+}
+
+
+input {
+  height: 50px;
+  width: 350px;
+  font-size: 30px;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 360px;
+  margin-top: 10px;
+}
+
+.createUserButton {
+  height: 50px;
+  width: 360px;
+  margin-top: 5px;
+}
+
+/*  NAV */
+
+.navbar {
+  font-size: 55px;
+  color: white;
+  background: #001F3B;
+  padding-left: -500px;
+  display: flex;
+  height: 7%;
+
+}
+
+.gameTitle a {
+  color: red;
+  text-decoration: none;
+  font-family: 'Special Elite', cursive;
+  padding-bottom: -10px;
+}
+
+.titlelogo {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+
+.navButtons {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+.chooseGameButton {
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+  float: right;
+}
+
+.chooseGameButton:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  color: green;
+}
+
+.logoutButton {
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #14a1ff, #2980b9);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+  float: right;
+}
+
+.logoutButton:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  color: red;
+}
+
+
+/*  ALL FEATURES CONTAINER */
+.allFeatures {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Left Side  */
+
+/* LeaderBoard */
+.leftContainer {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  width: 21%;
+  background-image: url('icons/sky.jpg');
+  height: 93%;
+  position: absolute;
+  left: 0;
+  opacity: .8;
+}
+
+.leaderboard {
+  font-size: 25px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.leaderScore {
+  border-bottom: 1px solid black;
+}
+
+/*  Player Help */
+
+.playerHelp {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: -10px;
+}
+
+/*  Right Side */
+
+.rightContainer {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  width: 20%;
+  background-image: url('icons/sky.jpg');
+  height: 93%;
+  position: absolute;
+  right: 0;
+  opacity: .8;
+}
+
+/*  Card Count */
+/*  CARDS */
+
+.cardsLeft {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.remainingCardsIcon {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.remainingCards .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-size: 20px;
+  background-color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -180px;
+}
+
+.remainingCards:hover .tooltiptext {
+    visibility: visible;
+}
+
+.refresh .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  font-size: 20px;
+  background-color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: 60px;
+}
+
+.refresh:hover .tooltiptext {
+    visibility: visible;
+}
+
+.refreshButton {
+  transform-origin: 50% 50%;
+  animation:30s App-logo-spin infinite linear;
+  background: none;
+  border: none;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.refreshButton:hover {
+  background: none;
+  border: none;
+}
+
+.refreshButton:focus {
+  outline:0;
+}
+
+.cardCounter {
+  font-size: 30px;
+}
+
+.cardCountButton {
+  margin-top: 10px;
+}
+
+/*  Bankroll */
+
+.bankrollBox {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.betButtons {
+  margin-top:20px;
+}
+
+.increaseButton {
+  background: #7eff14;
+  background-image: linear-gradient(to bottom, #7eff14, #5ab82b);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 15px 30px 15px 30px;
+  text-decoration: none;
+}
+
+.increaseButton:hover {
+  background: #8af261;
+  background-image: linear-gradient(to bottom, #8af261, #0ef030);
+  text-decoration: none;
+}
+
+.increaseButton:focus {
+  outline:0;
+}
+
+.decreaseButton {
+  background: #e63c3c;
+  background-image: linear-gradient(to bottom, #e63c3c, #c90c0c);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 15px 37px 15px 37px;
+  text-decoration: none;
+}
+
+.decreaseButton:hover {
+  background: #de5252;
+  background-image: linear-gradient(to bottom, #de5252, #f01d1d);
+  text-decoration: none;
+}
+
+.decreaseButton:focus {
+  outline:0;
+}
+
+.moneyImage {
+  margin-bottom: -5px;
+}
+
+.betImage {
+  margin-bottom: -10px;
+}
+
+.piggy:hover {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+/*  Blackjack Table */
+.blackjackTable {
+  left: 0;
+  right: 0;
+  background-image: url("icons/background.jpg");
+  background-size: 100%;
+  position: absolute;
+  height: 93%;
+}
+
+.startGame {
+  float: center;
+  margin-top: 350px;
+  font-size: 100px;
+  opacity: .9;
+}
+
+.currentBet {
+  font-size: 50px;
+  font-weight: bold;
+  color: yellow;
+  background: black;
+  font-family: "Bitter", cursive;
+}
+
+.firstDeal {
+  margin-top: 300px;
+  font-size: 100px;
+  opacity: .9;
+}
+
+.dealerCards {
+  justify-content: center;
+}
+
+.dealerCardsValue {
+  color: white;
+}
+
+.dealerCardsImages {
+  display: flex;
+  justify-content: center;
+}
+
+.playerCards {
+  justify-content: center;
+}
+
+.playerCardsValue {
+  color: white;
+}
+
+.playerCardsImages {
+  display: flex;
+  justify-content: center;
+}
+
+.playerOptions {
+  margin-top: 10px;
+}
+
+.playAgain {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+/* CARD Images */
+
+.cardImage {
+  border-radius: 12px;
+}
+
+/*  PLAYER OPTIONS */
+.playerOptions {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+/*  Choose Game */
+.chooseGame {
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  top: 10%;
+  font-family: "Abril Fatface", cursive;
+}
+
+.chooseGameImage img {
+  cursor: pointer;
+  border-radius: 10%;
+  border: 3px solid black;
+  width: 450px;
+  height: 250px;
+  opacity: .9;
+}
+
+.chooseGameImage img:hover {
+  cursor: pointer;
+  border-radius: 10%;
+  border: 3px solid white;
+}
+
+.chooseGameTitle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: white;
+  cursor: pointer;
+}
+
+.pokerTitle {
+  top: 16%;
+  left: 50%;
+}
+
+.pokerTitle:hover {
+  color: red;
+}
+
+.blackjackTitle {
+  top: 50%;
+  left: 50%;
+}
+
+.blackjackTitle:hover {
+  color: red;
+}
+
+.rouletteTitle {
+  top: 83%;
+  left: 50%;
+}
+
+.rouletteTitle:hover {
+  color: red;
+}
+
+/*  Poker Table */
+
+.pokerTable {
+  left: 0;
+  right: 0;
+  background-image: url("icons/poker.jpg");
+  background-size: 100%;
+  position: absolute;
+  height: 93%;
+}
+
+/* Poker Top Container  */
+.pokerTopContainer {
+  color: white;
+  font-size: 50px;
+  width: 79%;
+  background-image: url('icons/sky.jpg');
+  position: absolute;
+  top: 40;
+  left: 21%;
+  opacity: .8;
+}
+
+.pokerPayout {
+  font-size: 24px;
+  font-family: "Anton", cursive;
+}
+
+.pokerPayoutTitle {
+  position: absolute;
+  width: 100%;
+  color: black;
+  background: yellow;
+  font-size: 65px;
+  font-weight: bold;
+  font-family: "Special Elite", cursive;
+}
+
+.leftPokerPayouts {
+  color: white;
+  background: black;
+  position: absolute;
+  margin-top: 75px;
+  margin-left: 140px;
+  padding-top: 10px;
+}
+
+.middlePokerPayouts {
+  color: white;
+  background: black;
+  position: absolute;
+  margin-top: 75px;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.rightPokerPayouts {
+  color: white;
+  background: black;
+  position: absolute;
+  right: 0;
+  margin-top: 75px;
+  margin-right: 140px;
+  padding-top: 10px;
+}
+
+.payoutNumbers {
+  color: yellow;
+}
+
+.payoutName {
+  color: white;
+}
+
+
+/* Poker Cards */
+.pokerGameContent {
+  position: absolute;
+  left: 30%;
+  bottom: 5%;
+}
+
+.pokerPlayerCardsImages {
+  display: flex;
+  justify-content: center;
+}
+
+.evaluatedHand {
+  font-size: 60px;
+  color: white;
+  background: black;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-family: "Abril";
+  opacity: .9;
+}
+
+.finishedEvaluatedHand {
+  font-size: 60px;
+  color: yellow;
+  background: black;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-family: "Abril";
+  opacity: .9;
+}
+
+.clickedPokerCardImage {
+  cursor: pointer;
+  border-radius: 12px;
+  border: 3px solid red;
+}
+
+.heldCard {
+  font-size: 30px;
+  color: red;
+}
+
+.pokerDealButton {
+  margin-top: 50px;
+  font-size: 80px;
+}
+
+.pokerBeginButton {
+  margin-left: 300px;
+  margin-top: 400px;
+}
+
+/*  ROULETTE */
+
+.rouletteTable {
+  left: 0;
+  right: 0;
+  background-image: url("icons/roulette.jpg");
+  background-size: 100%;
+  position: absolute;
+  height: 93%;
+  opacity: .8;
+}
+
+.rouletteTemp {
+  font-size: 30px;
+  color: white;
+}
