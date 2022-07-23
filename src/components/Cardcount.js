@@ -15,12 +15,12 @@ class CardCount extends React.Component {
                     {started ?
                         <div className="cardsLeft">
                             <div className="remainingCards">
-                                <img className="remainingCardsIcon" src={require(`../icons/cards.svg`)} width="60px" alt=""/>
+                                <img className="remainingCardsIcon" src={require(`src/icons/cards.svg`)} width="60px" alt=""/>
                                 <span className="tooltiptext">Cards Left: {remaining}</span>
                             </div>
                             <button className="cardCountButton" onClick={()=>toggleCardCounter()}>Turn Off</button>
                             <div className="refresh">
-                                <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>
+                                <button className="refreshButton" onClick={() => startGame()} ><img src={require(`src/icons/refresh-button.svg`)} width="50px" alt=""/></button>
                                 <span className="tooltiptext">Refresh</span>
                             </div>
                         </div> : null }
@@ -49,12 +49,12 @@ class CardCount extends React.Component {
                 {started ?
                     <div className="cardsLeft">
                         <div className="remainingCards">
-                            <img className="remainingCardsIcon" src={require(`../icons/cards.svg`)} width="60px" alt=""/>
+                            <img className="remainingCardsIcon" src={require(`src/icons/cards.svg`)} width="60px" alt=""/>
                             <span className="tooltiptext">Cards Left: {remaining}</span>
                         </div>
                         <button className="cardCountButton" onClick={()=>toggleCardCounter()}>Turn On</button>
                         <div className="refresh">
-                            <button className="refreshButton" onClick={() => startGame()} ><img src={require(`../icons/refresh-button.svg`)} width="50px" alt=""/></button>
+                            <button className="refreshButton" onClick={() => startGame()} ><img src={require(`src/icons/refresh-button.svg`)} width="50px" alt=""/></button>
                             <span className="tooltiptext">Refresh</span>
                         </div>
                     </div>

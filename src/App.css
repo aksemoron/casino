@@ -34,7 +34,7 @@
 /* GLOBAL */
 
 html {
-  background-image: url("icons/login.jpg");
+  background-image: url("src/icons/login.jpg");
   height: 100%;
   background-size: 100%;
   overflow: scroll;
@@ -210,7 +210,7 @@ input {
   font-size: 50px;
   font-weight: bold;
   width: 21%;
-  background-image: url('icons/sky.jpg');
+  background-image: url('src/icons/sky.jpg');
   height: 93%;
   position: absolute;
   left: 0;
@@ -246,7 +246,7 @@ input {
   font-size: 50px;
   font-weight: bold;
   width: 20%;
-  background-image: url('icons/sky.jpg');
+  background-image: url('src/icons/sky.jpg');
   height: 93%;
   position: absolute;
   right: 0;
@@ -410,7 +410,7 @@ input {
 .blackjackTable {
   left: 0;
   right: 0;
-  background-image: url("icons/background.jpg");
+  background-image: url("src/icons/background.jpg");
   background-size: 100%;
   position: absolute;
   height: 93%;
@@ -549,7 +549,7 @@ input {
 .pokerTable {
   left: 0;
   right: 0;
-  background-image: url("icons/poker.jpg");
+  background-image: url("src/icons/poker.jpg");
   background-size: 100%;
   position: absolute;
   height: 93%;
@@ -560,7 +560,7 @@ input {
   color: white;
   font-size: 50px;
   width: 79%;
-  background-image: url('icons/sky.jpg');
+  background-image: url('src/icons/sky.jpg');
   position: absolute;
   top: 40;
   left: 21%;
@@ -679,7 +679,7 @@ input {
 .rouletteTable {
   left: 0;
   right: 0;
-  background-image: url("icons/roulette.jpg");
+  background-image: url("src/icons/roulette.jpg");
   background-size: 100%;
   position: absolute;
   height: 93%;
