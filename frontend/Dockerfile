@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/ubi8/nodejs-14:latest
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY frontend/package*.json ./
 
 # Install app dependencies
 RUN npm install --production
