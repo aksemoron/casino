@@ -4,4 +4,5 @@ COPY frontend/package*.json ./
 RUN npm install
 COPY frontend .
 EXPOSE 3000
+RUN cd frontend
 CMD [ "npm", "start" ]
