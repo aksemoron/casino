@@ -11,8 +11,7 @@ RUN npm install --production
 FROM registry.access.redhat.com/ubi8/nodejs-14-minimal:latest
 
 # Install app dependencies
-COPY --from=0 /opt/app-root/src/node_modules /opt/app-root/src/node_modules
-COPY . /opt/app-root/src
+COPY . .
 
 ENV NODE_ENV production
 ENV PORT 3000
